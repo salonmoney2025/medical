@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
-import { StatCard } from '@/components/dashboard/StatCard';
+import { DashboardLayout } from '@/frontend/components/dashboard/DashboardLayout';
+import { StatCard } from '@/frontend/components/dashboard/StatCard';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 interface DashboardStats {

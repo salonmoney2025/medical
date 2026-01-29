@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { hashPassword, validatePassword } from '@/lib/auth/password';
-import { withAuth } from '@/lib/auth/middleware';
-import { CreateUserDto, ApiResponse, User } from '@/types';
-import { isValidEmail } from '@/lib/utils/helpers';
+import { executeQuery } from '@/backend/database/connection';
+import { hashPassword, validatePassword } from '@/backend/server/auth/password';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { CreateUserDto, ApiResponse, User } from '@/backend/server/types';
+import { isValidEmail } from '@/backend/server/utils/helpers';
 
 // GET all users (Super Admin only)
 async function getUsersHandler(request: NextRequest) {

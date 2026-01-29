@@ -1,23 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery, getPool } from '@/lib/db/connection';
-import { hashPassword } from '@/lib/auth/password';
+import { executeQuery, getPool } from '@/backend/database/connection';
+import { hashPassword } from '@/backend/server/auth/password';
 import mysql from 'mysql2/promise';
 
 // POST - One-time setup: create database, tables, and super admin account
 export async function POST(request: NextRequest) {
   try {
-    // First, ensure the database itself exists
-    const dbName = process.env.DB_NAME || 'student_medical_system';
-    try {
-      const tempConnection = await mysql.createConnection({
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD || '',
-      });
-      await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
-      await tempConnection.end();
-    } catch (dbCreateError) {
-      console.log('Database may already exist, continuing...', dbCreateError);
+    // For local development with individual DB vars, try to create the database
+    // For cloud providers using DATABASE_URL, the database already exists
+    if (!process.env.DATABASE_URL) {
+      const dbName = process.env.DB_NAME || 'student_medical_system';
+      try {
+        const tempConnection = await mysql.createConnection({
+          host: process.env.DB_HOST || 'localhost',
+          port: parseInt(process.env.DB_PORT || '3306', 10),
+          user: process.env.DB_USER || 'root',
+          password: process.env.DB_PASSWORD || '',
+          ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined,
+        });
+        await tempConnection.query(`CREATE DATABASE IF NOT EXISTS \`${dbName}\``);
+        await tempConnection.end();
+      } catch (dbCreateError) {
+        console.log('Database may already exist, continuing...', dbCreateError);
+      }
     }
 
     const pool = getPool();
@@ -120,6 +125,32 @@ export async function POST(request: NextRequest) {
           INDEX idx_created_at (created_at)
         )
       `);
+
+      // Create theme_settings table
+      await connection.query(`
+        CREATE TABLE IF NOT EXISTS theme_settings (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          setting_key VARCHAR(100) UNIQUE NOT NULL,
+          setting_value VARCHAR(255) NOT NULL,
+          updated_by INT NULL,
+          updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+          FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL
+        )
+      `);
+
+      // Insert default theme settings
+      try {
+        await connection.query(`
+          INSERT INTO theme_settings (setting_key, setting_value) VALUES
+            ('primary_color', '#16a34a'),
+            ('sidebar_color', '#000000'),
+            ('background_color', '#f0f0f0'),
+            ('accent_color', '#22c55e')
+          ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value)
+        `);
+      } catch (e) {
+        // Ignore if already exists
+      }
 
       // Ensure users table has all required columns (for pre-existing tables)
       const userColumns = [
@@ -253,7 +284,7 @@ export async function GET(request: NextRequest) {
     // Check if tables exist
     const tables: Record<string, boolean> = {};
 
-    const tableNames = ['users', 'students', 'medical_records', 'system_logs'];
+    const tableNames = ['users', 'students', 'medical_records', 'system_logs', 'theme_settings'];
     for (const tableName of tableNames) {
       try {
         await executeQuery(`SELECT 1 FROM ${tableName} LIMIT 1`);

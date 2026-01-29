@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { ApiResponse } from '@/types';
-import { JwtPayload } from '@/lib/auth/jwt';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { ApiResponse } from '@/backend/server/types';
+import { JwtPayload } from '@/backend/server/auth/jwt';
 
 function extractStudentId(request: NextRequest): string {
   const url = new URL(request.url);

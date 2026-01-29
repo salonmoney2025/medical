@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { generateStudentTemplate } from '@/lib/utils/excel';
-import { withAuth } from '@/lib/auth/middleware';
+import { generateStudentTemplate } from '@/backend/server/utils/excel';
+import { withAuth } from '@/backend/server/auth/middleware';
 
 // GET - Download student upload template
 async function downloadTemplateHandler(request: NextRequest) {

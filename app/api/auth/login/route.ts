@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { comparePassword } from '@/lib/auth/password';
-import { generateToken } from '@/lib/auth/jwt';
-import { LoginDto, AuthResponse, User } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { comparePassword } from '@/backend/server/auth/password';
+import { generateToken } from '@/backend/server/auth/jwt';
+import { LoginDto, AuthResponse, User } from '@/backend/server/types';
 
 export async function POST(request: NextRequest) {
   try {

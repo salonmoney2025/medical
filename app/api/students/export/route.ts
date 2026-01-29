@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth/jwt';
-import { executeQuery } from '@/lib/db/connection';
+import { verifyToken } from '@/backend/server/auth/jwt';
+import { executeQuery } from '@/backend/database/connection';
 
 export async function GET(request: NextRequest) {
   try {

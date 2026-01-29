@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { hashPassword } from '@/lib/auth/password';
-import { ApiResponse } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { hashPassword } from '@/backend/server/auth/password';
+import { ApiResponse } from '@/backend/server/types';
 
 // POST - Super admin resets any user's password (no old password required)
 async function resetPasswordHandler(request: NextRequest) {

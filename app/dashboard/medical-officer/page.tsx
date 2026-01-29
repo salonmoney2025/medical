@@ -1,12 +1,12 @@
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
-import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
-import { Card } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { useToast } from '@/components/ui/Toast';
-import { Student, MedicalFormData } from '@/types';
+import { DashboardLayout } from '@/frontend/components/dashboard/DashboardLayout';
+import { Card } from '@/frontend/components/ui/Card';
+import { Input } from '@/frontend/components/ui/Input';
+import { Button } from '@/frontend/components/ui/Button';
+import { useToast } from '@/frontend/components/ui/Toast';
+import { Student, MedicalFormData } from '@/backend/server/types';
 
 // ============================================================================
 // Constants & Configuration
@@ -211,7 +211,7 @@ export default function MedicalOfficerDashboard() {
     let isValid = true;
 
     // Weight validation (typically 30-300 kg)
-    if (formData.weight !== undefined && formData.weight !== '') {
+    if (formData.weight !== undefined && formData.weight !== null) {
       const weight = Number(formData.weight);
       if (isNaN(weight) || weight < 20 || weight > 300) {
         errors.weight = 'Weight must be between 20-300 kg';
@@ -220,7 +220,7 @@ export default function MedicalOfficerDashboard() {
     }
 
     // Height validation (typically 100-250 cm)
-    if (formData.height !== undefined && formData.height !== '') {
+    if (formData.height !== undefined && formData.height !== null) {
       const height = Number(formData.height);
       if (isNaN(height) || height < 50 || height > 250) {
         errors.height = 'Height must be between 50-250 cm';

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { User } from '@/types';
+import { User } from '@/backend/server/types';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'fallback_secret_key';
 const JWT_EXPIRES_IN = '7d'; // Token expires in 7 days

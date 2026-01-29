@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
-import { Modal } from '@/components/ui/Modal';
-import { useToast } from '@/components/ui/Toast';
+import { DashboardLayout } from '@/frontend/components/dashboard/DashboardLayout';
+import { Modal } from '@/frontend/components/ui/Modal';
+import { useToast } from '@/frontend/components/ui/Toast';
 import * as XLSX from 'xlsx';
 
 interface StudentAccount {

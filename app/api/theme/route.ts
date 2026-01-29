@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { JwtPayload } from '@/lib/auth/jwt';
-import { ApiResponse } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { JwtPayload } from '@/backend/server/auth/jwt';
+import { ApiResponse } from '@/backend/server/types';
 
 // GET - Retrieve theme settings (public, no auth required)
 export async function GET() {

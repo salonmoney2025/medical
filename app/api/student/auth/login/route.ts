@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { ApiResponse } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { ApiResponse } from '@/backend/server/types';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 

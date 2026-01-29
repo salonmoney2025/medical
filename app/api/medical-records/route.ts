@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { JwtPayload } from '@/lib/auth/jwt';
-import { ApiResponse, MedicalRecord, CreateMedicalRecordDto } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { JwtPayload } from '@/backend/server/auth/jwt';
+import { ApiResponse, MedicalRecord, CreateMedicalRecordDto } from '@/backend/server/types';
 
 // GET medical records
 async function getMedicalRecordsHandler(request: NextRequest, user: JwtPayload) {

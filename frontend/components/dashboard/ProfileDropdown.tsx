@@ -2,8 +2,8 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { Modal } from '@/components/ui/Modal';
-import { Button } from '@/components/ui/Button';
+import { Modal } from '@/frontend/components/ui/Modal';
+import { Button } from '@/frontend/components/ui/Button';
 
 interface ProfileDropdownProps {
   user: {

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { verifyToken } from '@/lib/auth/jwt';
-import { executeQuery, getPool } from '@/lib/db/connection';
+import { verifyToken } from '@/backend/server/auth/jwt';
+import { executeQuery, getPool } from '@/backend/database/connection';
 import bcrypt from 'bcryptjs';
 
 // Auto-migrate: make matriculation_number nullable and drop unique constraint if needed

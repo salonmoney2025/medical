@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { ApiResponse } from '@/types';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { ApiResponse } from '@/backend/server/types';
 
 // POST - Super admin resets a student's password (plain text, matches assign pattern)
 async function resetStudentPasswordHandler(request: NextRequest) {

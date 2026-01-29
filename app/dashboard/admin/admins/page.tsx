@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
-import { Modal } from '@/components/ui/Modal';
+import { DashboardLayout } from '@/frontend/components/dashboard/DashboardLayout';
+import { Modal } from '@/frontend/components/ui/Modal';
 
 interface Admin {
   id: number;

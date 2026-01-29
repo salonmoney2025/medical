@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { DashboardLayout } from '@/components/dashboard/DashboardLayout';
+import { DashboardLayout } from '@/frontend/components/dashboard/DashboardLayout';
 
 interface GeneratedReport {
   id: number;

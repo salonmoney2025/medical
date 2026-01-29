@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/frontend/components/ui/Button';
 
 export default function StudentLoginPage() {
   const router = useRouter();

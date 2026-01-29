@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { parseStudentExcel, validateStudentData } from '@/lib/utils/excel';
-import { executeQuery } from '@/lib/db/connection';
-import { withAuth } from '@/lib/auth/middleware';
-import { ApiResponse, ExcelUploadResult } from '@/types';
+import { parseStudentExcel, validateStudentData } from '@/backend/server/utils/excel';
+import { executeQuery } from '@/backend/database/connection';
+import { withAuth } from '@/backend/server/auth/middleware';
+import { ApiResponse, ExcelUploadResult } from '@/backend/server/types';
 
 // POST - Upload Excel file with student data
 async function uploadStudentsHandler(request: NextRequest) {

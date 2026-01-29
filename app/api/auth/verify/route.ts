@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { authenticate } from '@/lib/auth/middleware';
-import { ApiResponse } from '@/types';
+import { authenticate } from '@/backend/server/auth/middleware';
+import { ApiResponse } from '@/backend/server/types';
 
 export async function GET(request: NextRequest) {
   try {

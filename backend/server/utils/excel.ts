@@ -1,5 +1,5 @@
 import * as XLSX from 'xlsx';
-import { StudentUploadData, ExcelUploadResult } from '@/types';
+import { StudentUploadData, ExcelUploadResult } from '@/backend/server/types';
 
 /**
  * Generate Excel template for student data upload
