@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "openai.chatgpt",
+    "anthropic.claude-code",
+    "wycliffepepela.mysql-tool",
+    "kilocode.kilo-code",
+    "anseki.vscode-color"
+  ]
+}
