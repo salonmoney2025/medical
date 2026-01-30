@@ -21,6 +21,7 @@ async function getMedicalRecordsHandler(request: NextRequest, user: JwtPayload) 
       query = `
         SELECT mr.*, s.name as student_name, s.matriculation_number,
                s.appid, s.program, s.faculty, s.department,
+               s.medical_report_id, s.password as student_password,
                u.full_name as medical_officer_name
         FROM medical_records mr
         JOIN students s ON mr.student_id = s.id
@@ -34,6 +35,7 @@ async function getMedicalRecordsHandler(request: NextRequest, user: JwtPayload) 
       query = `
         SELECT mr.*, s.name as student_name, s.matriculation_number,
                s.appid, s.program, s.faculty, s.department,
+               s.medical_report_id, s.password as student_password,
                u.full_name as medical_officer_name
         FROM medical_records mr
         JOIN students s ON mr.student_id = s.id
@@ -47,6 +49,7 @@ async function getMedicalRecordsHandler(request: NextRequest, user: JwtPayload) 
       query = `
         SELECT mr.*, s.name as student_name, s.matriculation_number,
                s.appid, s.program, s.faculty, s.department,
+               s.medical_report_id, s.password as student_password,
                u.full_name as medical_officer_name
         FROM medical_records mr
         JOIN students s ON mr.student_id = s.id

@@ -36,7 +36,7 @@ export async function GET() {
 async function updateThemeHandler(request: NextRequest, user: JwtPayload) {
   try {
     const body = await request.json();
-    const allowedKeys = ['primary_color', 'sidebar_color', 'background_color', 'accent_color'];
+    const allowedKeys = ['primary_color', 'sidebar_color', 'background_color', 'accent_color', 'alert_duration'];
 
     // Ensure table exists
     await executeQuery(`

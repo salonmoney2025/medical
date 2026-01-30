@@ -53,6 +53,7 @@ interface ThemeSettings {
   sidebar_color: string;
   background_color: string;
   accent_color: string;
+  alert_duration: string;
 }
 
 export default function SettingsPage() {
@@ -61,6 +62,7 @@ export default function SettingsPage() {
     sidebar_color: '#000000',
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
+    alert_duration: '20000',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -81,6 +83,7 @@ export default function SettingsPage() {
           sidebar_color: data.data.sidebar_color || '#000000',
           background_color: data.data.background_color || '#f0f0f0',
           accent_color: data.data.accent_color || '#22c55e',
+          alert_duration: data.data.alert_duration || '20000',
         });
       }
     } catch {
@@ -128,11 +131,12 @@ export default function SettingsPage() {
   };
 
   const applyPreset = (preset: typeof PRESET_THEMES[number]) => {
-    const newTheme = {
+    const newTheme: ThemeSettings = {
       primary_color: preset.primary_color,
       sidebar_color: preset.sidebar_color,
       background_color: preset.background_color,
       accent_color: preset.accent_color,
+      alert_duration: theme.alert_duration,
     };
     setTheme(newTheme);
     applyTheme(newTheme);
@@ -337,6 +341,27 @@ export default function SettingsPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Alert Duration */}
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Alert Duration</h2>
+          <p className="text-sm text-gray-500 mb-4">Configure how long toast notifications remain visible before fading out.</p>
+          <div className="flex items-center gap-4">
+            <select
+              value={theme.alert_duration}
+              onChange={(e) => setTheme({ ...theme, alert_duration: e.target.value })}
+              title="Alert duration"
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 text-gray-900"
+            >
+              <option value="5000">5 seconds</option>
+              <option value="10000">10 seconds</option>
+              <option value="15000">15 seconds</option>
+              <option value="20000">20 seconds (Default)</option>
+              <option value="30000">30 seconds</option>
+            </select>
+            <span className="text-sm text-gray-500">Currently: {parseInt(theme.alert_duration) / 1000}s</span>
           </div>
         </div>
 

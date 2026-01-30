@@ -27,11 +27,24 @@ let idCounter = 0;
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [defaultDuration, setDefaultDuration] = useState(20000);
 
-  const toast = useCallback((message: string, type: ToastType = 'success', duration: number = 10000) => {
-    const id = ++idCounter;
-    setToasts(prev => [...prev, { id, message, type, duration }]);
+  useEffect(() => {
+    fetch('/api/theme')
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.data?.alert_duration) {
+          const ms = parseInt(data.data.alert_duration, 10);
+          if (!isNaN(ms) && ms > 0) setDefaultDuration(ms);
+        }
+      })
+      .catch(() => {});
   }, []);
+
+  const toast = useCallback((message: string, type: ToastType = 'success', duration?: number) => {
+    const id = ++idCounter;
+    setToasts(prev => [...prev, { id, message, type, duration: duration ?? defaultDuration }]);
+  }, [defaultDuration]);
 
   const removeToast = useCallback((id: number) => {
     setToasts(prev => prev.filter(t => t.id !== id));

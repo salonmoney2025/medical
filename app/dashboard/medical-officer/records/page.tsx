@@ -21,6 +21,8 @@ interface MedicalRecord {
   is_completed: boolean;
   created_at: string;
   completed_at: string | null;
+  medical_report_id: string | null;
+  student_password: string | null;
 }
 
 interface RecordStats {
@@ -393,6 +395,9 @@ export default function MedicalOfficerRecordsPage() {
                 <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Diagnosis</th>
                 <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Health %</th>
                 <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Status</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Report ID</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Password</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Login Link</th>
                 <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Date</th>
               </tr>
             </thead>
@@ -405,6 +410,9 @@ export default function MedicalOfficerRecordsPage() {
                   <td className="px-3 py-1.5 text-xs text-gray-700">{record.diagnosis || 'N/A'}</td>
                   <td className="px-3 py-1.5 text-xs text-gray-900 font-semibold">{record.health_percentage != null ? `${record.health_percentage}%` : 'N/A'}</td>
                   <td className="px-3 py-1.5 text-xs text-gray-700">{record.is_completed ? 'Completed' : 'Pending'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700 font-mono">{record.medical_report_id || 'N/A'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700 font-mono">{record.student_password || 'N/A'}</td>
+                  <td className="px-3 py-1.5 text-xs text-blue-700">/student/login</td>
                   <td className="px-3 py-1.5 text-xs text-gray-600">{formatDate(record.created_at)}</td>
                 </tr>
               ))}
