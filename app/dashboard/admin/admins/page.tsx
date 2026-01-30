@@ -33,10 +33,13 @@ export default function AdminsPage() {
   const [inviteForm, setInviteForm] = useState({
     email: '',
     full_name: '',
+    password: '',
     designation: '',
     campus: '',
     role: '',
   });
+  const [inviteResult, setInviteResult] = useState<{ show: boolean; success: boolean; email: string; password: string; message: string }>({ show: false, success: false, email: '', password: '', message: '' });
+  const [inviting, setInviting] = useState(false);
 
   // Reset password state
   const [resetTarget, setResetTarget] = useState<Admin | null>(null);
@@ -136,6 +139,7 @@ export default function AdminsPage() {
 
   const handleInviteAdmin = async (e: React.FormEvent) => {
     e.preventDefault();
+    setInviting(true);
     try {
       const token = localStorage.getItem('token');
       const response = await fetch('/api/users/invite', {
@@ -150,17 +154,42 @@ export default function AdminsPage() {
       const data = await response.json();
       if (data.success) {
         setShowInviteModal(false);
+        setInviteResult({
+          show: true,
+          success: true,
+          email: data.data?.email || inviteForm.email,
+          password: data.data?.temporary_password || inviteForm.password,
+          message: 'Admin account created successfully!',
+        });
         setInviteForm({
           email: '',
           full_name: '',
+          password: '',
           designation: '',
           campus: '',
           role: '',
         });
         fetchAdmins();
+      } else {
+        setInviteResult({
+          show: true,
+          success: false,
+          email: '',
+          password: '',
+          message: data.error || 'Failed to create admin',
+        });
       }
     } catch (error) {
       console.error('Failed to invite admin:', error);
+      setInviteResult({
+        show: true,
+        success: false,
+        email: '',
+        password: '',
+        message: 'Failed to create admin. Please try again.',
+      });
+    } finally {
+      setInviting(false);
     }
   };
 
@@ -429,6 +458,20 @@ export default function AdminsPage() {
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
+            <div>
+              <input
+                type="text"
+                placeholder="Password (min 6 characters)"
+                value={inviteForm.password}
+                onChange={(e) =>
+                  setInviteForm({ ...inviteForm, password: e.target.value })
+                }
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                required
+                minLength={6}
+              />
+              <p className="text-xs text-gray-500 mt-1">Set the login password for this admin</p>
+            </div>
             <select
               value={inviteForm.designation}
               onChange={(e) =>
@@ -479,14 +522,16 @@ export default function AdminsPage() {
                 type="button"
                 onClick={() => setShowInviteModal(false)}
                 className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+                disabled={inviting}
               >
                 CANCEL
               </button>
               <button
                 type="submit"
-                className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition"
+                disabled={inviting}
+                className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
               >
-                INVITE
+                {inviting ? 'Creating...' : 'CREATE ADMIN'}
               </button>
             </div>
           </form>
@@ -538,6 +583,50 @@ export default function AdminsPage() {
             </div>
           </div>
         </Modal>
+
+        {/* Invite Result Popup */}
+        {inviteResult.show && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className={`${inviteResult.success ? 'bg-green-50 border-green-300' : 'bg-red-50 border-red-300'} border rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4`}>
+              <div className="text-center mb-4">
+                <div className={`w-14 h-14 ${inviteResult.success ? 'bg-green-100' : 'bg-red-100'} rounded-full flex items-center justify-center mx-auto mb-3`}>
+                  {inviteResult.success ? (
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  ) : (
+                    <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  )}
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">
+                  {inviteResult.success ? 'Admin Created Successfully' : 'Failed to Create Admin'}
+                </h3>
+                <p className="text-sm text-gray-600 mt-1">{inviteResult.message}</p>
+              </div>
+              {inviteResult.success && (
+                <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4 space-y-2">
+                  <div>
+                    <span className="text-xs text-gray-500 font-medium">Email</span>
+                    <p className="text-sm font-semibold text-gray-900">{inviteResult.email}</p>
+                  </div>
+                  <div>
+                    <span className="text-xs text-gray-500 font-medium">Password</span>
+                    <p className="text-sm font-semibold text-gray-900">{inviteResult.password}</p>
+                  </div>
+                  <p className="text-xs text-orange-600 mt-2">Save these credentials - the password cannot be viewed again.</p>
+                </div>
+              )}
+              <button
+                onClick={() => setInviteResult({ show: false, success: false, email: '', password: '', message: '' })}
+                className={`w-full mt-1 px-6 py-3 ${inviteResult.success ? 'bg-green-600 hover:bg-green-700' : 'bg-red-600 hover:bg-red-700'} text-white rounded-xl font-semibold transition shadow-sm`}
+              >
+                Done
+              </button>
+            </div>
+          </div>
+        )}
 
         {/* Reset Result Popup */}
         {resetResult.show && (

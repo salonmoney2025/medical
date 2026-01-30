@@ -23,8 +23,14 @@ async function inviteUserHandler(request: NextRequest) {
       );
     }
 
-    // Generate a temporary password
-    const tempPassword = Math.random().toString(36).slice(-10);
+    // Use provided password or generate a temporary one
+    const tempPassword = body.password || Math.random().toString(36).slice(-10);
+    if (tempPassword.length < 6) {
+      return NextResponse.json(
+        { success: false, error: 'Password must be at least 6 characters' } as ApiResponse,
+        { status: 400 }
+      );
+    }
     const hashedPassword = await bcrypt.hash(tempPassword, 10);
 
     // Determine role enum value based on input
