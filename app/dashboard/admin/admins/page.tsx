@@ -15,8 +15,8 @@ interface Admin {
 }
 
 const CAMPUSES = ['Magburaka Campus', 'Makeni Campus', 'Portloko Campus', 'University Secretariat'];
-const ROLES = ['Super Admin', 'Registrar', 'Registry'];
-const DESIGNATIONS = ['ICT Officer', 'Software Systems Administrator', 'ISM', 'Vice-Chancellor and Principal', 'Deputy Registrar', 'IH'];
+const ROLES = ['Super Admin', 'University Medical Officer', 'Registrar', 'Registry'];
+const DESIGNATIONS = ['Medical Officer', 'Admin', 'Dr', 'Vice-Chancellor and Principal', 'Deputy Registrar', 'Medical'];
 
 export default function AdminsPage() {
   const [admins, setAdmins] = useState<Admin[]>([]);

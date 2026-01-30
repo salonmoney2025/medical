@@ -52,9 +52,40 @@ body {
     display: none !important;
   }
 
+  .print\:block {
+    display: block !important;
+  }
+
   body {
     background: rgb(255, 255, 255);
     color: black;
+  }
+
+  /* Print table formatting */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10pt;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 4px 8px;
+  }
+
+  /* Clean print layout */
+  .rounded-lg,
+  .rounded-xl,
+  .rounded-2xl {
+    border-radius: 0 !important;
+  }
+
+  .shadow-sm,
+  .shadow-md,
+  .shadow-lg,
+  .shadow-2xl {
+    box-shadow: none !important;
   }
 }
 

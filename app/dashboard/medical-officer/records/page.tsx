@@ -36,6 +36,7 @@ export default function MedicalOfficerRecordsPage() {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterType, setFilterType] = useState('Name');
+  const [healthStatusFilter, setHealthStatusFilter] = useState('All');
   const [searching, setSearching] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(20);
@@ -54,7 +55,7 @@ export default function MedicalOfficerRecordsPage() {
 
   useEffect(() => {
     filterRecords();
-  }, [records, searchTerm, filterType]);
+  }, [records, searchTerm, filterType, healthStatusFilter]);
 
   const fetchRecords = async () => {
     setLoading(true);
@@ -85,22 +86,28 @@ export default function MedicalOfficerRecordsPage() {
   };
 
   const filterRecords = () => {
-    if (!searchTerm) {
-      setFilteredRecords(records);
-      return;
+    let filtered = records;
+
+    // Apply health status filter
+    if (healthStatusFilter !== 'All') {
+      filtered = filtered.filter((record) => record.health_status === healthStatusFilter);
     }
 
-    const term = searchTerm.toLowerCase();
-    const filtered = records.filter((record) => {
-      switch (filterType) {
-        case 'Name':
-          return record.student_name?.toLowerCase().includes(term);
-        case 'Diagnosis':
-          return record.diagnosis?.toLowerCase().includes(term);
-        default:
-          return false;
-      }
-    });
+    // Apply search term filter
+    if (searchTerm) {
+      const term = searchTerm.toLowerCase();
+      filtered = filtered.filter((record) => {
+        switch (filterType) {
+          case 'Name':
+            return record.student_name?.toLowerCase().includes(term);
+          case 'Diagnosis':
+            return record.diagnosis?.toLowerCase().includes(term);
+          default:
+            return false;
+        }
+      });
+    }
+
     setFilteredRecords(filtered);
     setCurrentPage(1);
   };
@@ -115,6 +122,10 @@ export default function MedicalOfficerRecordsPage() {
     setSearchTerm('');
     setFilteredRecords(records);
     setCurrentPage(1);
+  };
+
+  const handlePrint = () => {
+    window.print();
   };
 
   const handleSearchKeyDown = (e: React.KeyboardEvent) => {
@@ -153,15 +164,35 @@ export default function MedicalOfficerRecordsPage() {
     <DashboardLayout title="My Records" role="medical_officer">
       <div className="space-y-6">
         {/* Header */}
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center print:hidden">
           <h1 className="text-2xl font-bold text-gray-900">Medical Records</h1>
-          <button
-            onClick={fetchRecords}
-            className="flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition"
-          >
-            <span>🔄</span>
-            Refresh
-          </button>
+          <div className="flex gap-3">
+            <button
+              onClick={fetchRecords}
+              className="flex items-center gap-2 px-4 py-2 bg-green-100 text-green-700 rounded-lg hover:bg-green-200 transition"
+            >
+              <span>🔄</span>
+              Refresh
+            </button>
+            <button
+              onClick={handlePrint}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition"
+            >
+              <span>🖨️</span>
+              Print Records
+            </button>
+          </div>
+        </div>
+
+        {/* Print Header - only visible when printing */}
+        <div className="hidden print:block text-center mb-6 border-b-2 border-gray-300 pb-4">
+          <h1 className="text-xl font-bold">ERNEST BAI KOROMA UNIVERSITY OF SCIENCE AND TECHNOLOGY</h1>
+          <p className="text-sm mt-1">Office of the Registrar - Medical Records Report</p>
+          <p className="text-xs mt-2">
+            {healthStatusFilter !== 'All' ? `Health Status: ${healthStatusFilter.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}` : 'All Records'}
+            {' | '}Total: {filteredRecords.length} records
+            {' | '}Printed: {new Date().toLocaleDateString()}
+          </p>
         </div>
 
         {/* Error Banner */}
@@ -173,7 +204,7 @@ export default function MedicalOfficerRecordsPage() {
         )}
 
         {/* Search and Filter */}
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col sm:flex-row gap-4 print:hidden">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
               <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
@@ -215,10 +246,21 @@ export default function MedicalOfficerRecordsPage() {
             <option value="Name">Student Name</option>
             <option value="Diagnosis">Diagnosis</option>
           </select>
+          <select
+            value={healthStatusFilter}
+            onChange={(e) => setHealthStatusFilter(e.target.value)}
+            title="Health status filter"
+            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 shadow-sm text-gray-900"
+          >
+            <option value="All">All Health Status</option>
+            <option value="perfectly_ok">Perfectly Healthy</option>
+            <option value="moderately_healthy">Moderately Healthy</option>
+            <option value="healthy">Healthy</option>
+          </select>
         </div>
 
         {/* Stats Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 print:hidden">
           <div className="bg-white rounded-lg border border-gray-200 p-4 shadow-sm">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
@@ -273,8 +315,8 @@ export default function MedicalOfficerRecordsPage() {
           </div>
         </div>
 
-        {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+        {/* Table (screen - paginated) */}
+        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm print:hidden">
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead className="bg-gray-50 border-b border-gray-200">
@@ -340,9 +382,39 @@ export default function MedicalOfficerRecordsPage() {
             </table>
           </div>
 
+        {/* Print-only table (all filtered records) */}
+        <div className="hidden print:block">
+          <table className="w-full border-collapse">
+            <thead>
+              <tr className="border-b-2 border-gray-400">
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Student Name</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Mat. Number</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Program</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Diagnosis</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Health %</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Status</th>
+                <th className="text-left px-3 py-2 text-xs font-bold text-gray-800">Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredRecords.map((record) => (
+                <tr key={record.id} className="border-b border-gray-200">
+                  <td className="px-3 py-1.5 text-xs text-gray-900">{record.student_name}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700">{record.matriculation_number || 'N/A'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700">{record.program}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700">{record.diagnosis || 'N/A'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-900 font-semibold">{record.health_percentage != null ? `${record.health_percentage}%` : 'N/A'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-700">{record.is_completed ? 'Completed' : 'Pending'}</td>
+                  <td className="px-3 py-1.5 text-xs text-gray-600">{formatDate(record.created_at)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
           {/* Pagination */}
           {!loading && filteredRecords.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 print:hidden">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-gray-700">Rows per page:</span>
                 <span className="text-sm font-semibold text-gray-900">{rowsPerPage}</span>
@@ -374,7 +446,7 @@ export default function MedicalOfficerRecordsPage() {
 
         {/* Record Detail Modal */}
         {selectedRecord && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 print:hidden">
             <div className="bg-white border border-gray-200 rounded-2xl shadow-2xl p-6 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-lg font-bold text-gray-900">Medical Record Details</h3>

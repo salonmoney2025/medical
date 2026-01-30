@@ -201,6 +201,7 @@ export default function MedicalOfficerDashboard() {
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<MedicalFormData>({});
   const [formErrors, setFormErrors] = useState<FormErrors>({});
+  const [successData, setSuccessData] = useState<{ medical_report_id: string; student_password: string; appid: string } | null>(null);
 
   // ============================================================================
   // Form Validation
@@ -288,19 +289,13 @@ export default function MedicalOfficerDashboard() {
       return;
     }
 
-    // Validate Student ID format (numeric)
-    if (!/^\d+$/.test(searchTerm)) {
-      toast('Student ID must be a number', 'error');
-      return;
-    }
-
     setLoading(true);
     setStudent(null);
 
     try {
       const token = localStorage.getItem('token');
       const response = await fetch(
-        `/api/students?student_id=${encodeURIComponent(searchTerm)}`,
+        `/api/students?appid=${encodeURIComponent(searchTerm)}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -356,10 +351,11 @@ export default function MedicalOfficerDashboard() {
       const data = await response.json();
 
       if (data.success) {
-        toast(
-          `Medical report submitted! Report ID: ${data.data.medical_report_id}. Password: ${data.data.student_password}`,
-          'success'
-        );
+        setSuccessData({
+          medical_report_id: data.data.medical_report_id,
+          student_password: data.data.student_password,
+          appid: student?.appid || matriculationNumber,
+        });
         setStudent(null);
         setMatriculationNumber('');
         setFormData({});
@@ -391,7 +387,7 @@ export default function MedicalOfficerDashboard() {
             <div className="flex-1">
               <input
                 type="text"
-                placeholder="Enter Student ID (e.g., 1, 2, 3...)"
+                placeholder="Enter Student APPID"
                 value={matriculationNumber}
                 onChange={(e) => setMatriculationNumber(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -601,6 +597,46 @@ export default function MedicalOfficerDashboard() {
               </form>
             </Card>
           </>
+        )}
+
+        {/* Success Credentials Modal */}
+        {successData && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="bg-green-50 border border-green-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
+              <div className="text-center mb-4">
+                <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-gray-900">Medical Report Submitted</h3>
+                <p className="text-sm text-gray-600 mt-1">Student account has been generated successfully.</p>
+              </div>
+              <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
+                <div>
+                  <span className="text-xs text-gray-500 font-medium">Medical Report ID</span>
+                  <p className="text-sm font-bold text-green-700">{successData.medical_report_id}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500 font-medium">Student APPID (Login Username)</span>
+                  <p className="text-sm font-bold text-gray-900">{successData.appid}</p>
+                </div>
+                <div>
+                  <span className="text-xs text-gray-500 font-medium">Student Password</span>
+                  <p className="text-sm font-bold text-gray-900">{successData.student_password}</p>
+                </div>
+                <div className="border-t border-gray-100 pt-2">
+                  <p className="text-xs text-orange-600">Save these credentials. The student can login at /student/login with their APPID and password.</p>
+                </div>
+              </div>
+              <button
+                onClick={() => setSuccessData(null)}
+                className="w-full px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-xl font-semibold transition shadow-sm"
+              >
+                Done
+              </button>
+            </div>
+          </div>
         )}
       </div>
     </DashboardLayout>

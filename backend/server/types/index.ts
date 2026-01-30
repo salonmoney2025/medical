@@ -33,11 +33,20 @@ export interface AuthResponse {
 // Student Types
 export interface Student {
   id: number;
+  appid?: string;
   name: string;
+  email?: string;
   matriculation_number: string;
   program: string;
+  campus?: string;
   faculty: string;
   department: string;
+  academic_year?: string;
+  medical_report_id?: string;
+  password?: string;
+  report_status?: 'pending' | 'assigned' | 'completed';
+  health_percentage?: number;
+  health_status?: string;
   created_at: Date;
   updated_at: Date;
 }
