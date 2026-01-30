@@ -520,6 +520,7 @@ export default function MedicalOfficerRecordsPage() {
           <div className="mt-6 text-center text-xs text-black-500 border-t border-black-300 pt-4">
             <p>This is an official document from Ernest Bai Koroma University of Science and Technology</p>
             <p className="mt-1 font-semibold">EBK &mdash; The only institution where technology lives</p>
+            <p className="mt-1">&copy; EBKUSTSL 2026. All rights reserved.</p>
           </div>
         </div>
 

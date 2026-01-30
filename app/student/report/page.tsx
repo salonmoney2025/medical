@@ -479,11 +479,17 @@ export default function StudentReportPage() {
               Report ID: {student.medical_report_id} | Generated on:{' '}
               {new Date().toLocaleDateString()}
             </p>
+            <p className="mt-1">&copy; EBKUSTSL 2026. All rights reserved.</p>
           </div>
         </div>
       </div>
 
       {/* Change Password Modal */}
+      {/* Footer */}
+      <footer className="max-w-5xl mx-auto px-4 py-4 text-center text-xs text-black-400 print:hidden">
+        &copy; EBKUSTSL 2026. All rights reserved.
+      </footer>
+
       {showPasswordModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 print:hidden">
           <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-md w-full mx-4">

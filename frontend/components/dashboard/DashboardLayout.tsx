@@ -158,6 +158,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         <main className="p-4 sm:p-6">
           {children}
         </main>
+
+        {/* Footer */}
+        <footer className="px-4 sm:px-6 py-4 text-center text-xs text-black-400 border-t border-black-200">
+          &copy; EBKUSTSL 2026. All rights reserved.
+        </footer>
       </div>
     </div>
   );
