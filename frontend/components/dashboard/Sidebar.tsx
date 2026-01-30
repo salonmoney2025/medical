@@ -81,6 +81,17 @@ const StethoscopeIcon = () => (
   </svg>
 );
 
+// Helper: determine if a hex color is light or dark
+function isLightColor(hex: string): boolean {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substring(0, 2), 16);
+  const g = parseInt(c.substring(2, 4), 16);
+  const b = parseInt(c.substring(4, 6), 16);
+  // Relative luminance formula
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5;
+}
+
 export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebarColor = '#000000', primaryColor = '#16a34a' }) => {
   const pathname = usePathname();
   const router = useRouter();
@@ -88,6 +99,13 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Smart text contrast based on sidebar background color
+  const lightBg = isLightColor(sidebarColor);
+  const textPrimary = lightBg ? '#111827' : '#ffffff';
+  const textSecondary = lightBg ? '#4b5563' : '#9ca3af';
+  const textMuted = lightBg ? '#6b7280' : '#6b7280';
+  const hoverBg = lightBg ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.05)';
 
   useEffect(() => {
     // Load user info from localStorage
@@ -189,10 +207,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
 
   return (
     <>
-      {/* Overlay for mobile */}
+      {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-40"
           onClick={onClose}
         />
       )}
@@ -204,10 +222,9 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
           w-64 flex flex-col shadow-2xl
           transform transition-transform duration-300 ease-in-out
           ${isOpen ? 'translate-x-0' : '-translate-x-full'}
-          lg:translate-x-0
         `}
         style={{
-          background: `linear-gradient(180deg, ${sidebarColor} 0%, #0f2027 50%, #0a1a1f 100%)`,
+          backgroundColor: sidebarColor,
         }}
       >
         {/* Logo/Brand Header */}
@@ -221,15 +238,16 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
                 <StethoscopeIcon />
               </div>
               <div>
-                <h2 className="font-bold text-sm text-white tracking-wide">EBKUST</h2>
+                <h2 className="font-bold text-sm tracking-wide" style={{ color: textPrimary }}>EBKUST</h2>
                 <p className="text-[10px] font-medium tracking-widest" style={{ color: `${primaryColor}cc` }}>MEDICAL SYSTEM</p>
               </div>
             </div>
-            {/* Close button for mobile */}
+            {/* Close button */}
             <button
               type="button"
               onClick={onClose}
-              className="lg:hidden text-black-400 hover:text-white transition p-1"
+              className="transition p-1"
+              style={{ color: textSecondary }}
               aria-label="Close sidebar"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -284,7 +302,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
             </div>
             {/* User Info */}
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-semibold text-white truncate">{userName || 'User'}</p>
+              <p className="text-sm font-semibold truncate" style={{ color: textPrimary }}>{userName || 'User'}</p>
               <p className="text-xs font-medium truncate" style={{ color: `${primaryColor}cc` }}>{roleLabel}</p>
             </div>
           </div>
@@ -295,7 +313,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
 
         {/* Navigation Menu */}
         <nav className="flex-1 overflow-y-auto py-3 px-3">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-black-500 px-3 mb-2">Navigation</p>
+          <p className="text-[10px] font-semibold uppercase tracking-widest px-3 mb-2" style={{ color: textMuted }}>Navigation</p>
           {menuItems.map((item) => {
             const active = isActive(item.path);
             return (
@@ -303,11 +321,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
                 type="button"
                 key={item.path}
                 onClick={() => handleNavigate(item.path)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 text-left transition-all duration-200 ${
-                  active
-                    ? 'shadow-md'
-                    : 'text-black-300 hover:bg-white/5'
-                }`}
+                className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 text-left transition-all duration-200"
                 style={
                   active
                     ? {
@@ -315,10 +329,19 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
                         color: primaryColor,
                         borderLeft: `3px solid ${primaryColor}`,
                       }
-                    : { borderLeft: '3px solid transparent' }
+                    : {
+                        borderLeft: '3px solid transparent',
+                        color: textSecondary,
+                      }
                 }
+                onMouseEnter={(e) => {
+                  if (!active) e.currentTarget.style.backgroundColor = hoverBg;
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) e.currentTarget.style.backgroundColor = 'transparent';
+                }}
               >
-                <span className={active ? '' : 'text-black-400'}>{item.icon}</span>
+                <span style={{ color: active ? primaryColor : textMuted }}>{item.icon}</span>
                 <span className="font-semibold text-[13px]">{item.name}</span>
               </button>
             );
@@ -327,7 +350,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
 
         {/* Footer */}
         <div className="px-5 py-4 border-t" style={{ borderColor: `${primaryColor}22` }}>
-          <div className="flex items-center gap-2 text-black-500">
+          <div className="flex items-center gap-2" style={{ color: textMuted }}>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>

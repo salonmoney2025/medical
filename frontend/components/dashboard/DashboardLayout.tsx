@@ -5,6 +5,16 @@ import { ReactNode, useEffect, useState } from 'react';
 import { Sidebar } from './Sidebar';
 import { ProfileDropdown } from './ProfileDropdown';
 
+// Helper: determine if a hex color is light or dark
+function isLightColor(hex: string): boolean {
+  const c = hex.replace('#', '');
+  const r = parseInt(c.substring(0, 2), 16);
+  const g = parseInt(c.substring(2, 4), 16);
+  const b = parseInt(c.substring(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5;
+}
+
 interface DashboardLayoutProps {
   children: ReactNode;
   title?: string;
@@ -90,6 +100,11 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     );
   }
 
+  // Smart text contrast for the top bar
+  const barIsLight = isLightColor(themeColors.bar_color);
+  const barTextColor = barIsLight ? '#1f2937' : '#ffffff';
+  const barIconColor = barIsLight ? '#374151' : '#d1d5db';
+
   return (
     <div className="min-h-screen flex" style={{ backgroundColor: themeColors.background_color, color: themeColors.text_color }}>
       {/* Sidebar */}
@@ -104,17 +119,18 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       )}
 
       {/* Main Content Area */}
-      <div className={`flex-1 w-full ${showSidebar ? 'lg:ml-64' : ''}`}>
+      <div className="flex-1 w-full">
         {/* Header */}
         <header className="border-b border-black-200 sticky top-0 z-30 shadow-sm" style={{ backgroundColor: themeColors.bar_color }}>
           <div className="px-4 sm:px-6 py-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4 flex-1">
-                {/* Hamburger Menu Button */}
+                {/* Menu Button - always visible */}
                 {showSidebar && (
                   <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="lg:hidden text-black-700 hover:text-black-900 transition-colors p-2 rounded-lg hover:bg-black-100"
+                    className="transition-colors p-2 rounded-lg"
+                    style={{ color: barIconColor }}
                     aria-label="Toggle menu"
                   >
                     <svg
@@ -143,7 +159,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 )}
                 {title && (
                   <div>
-                    <h1 className="text-lg sm:text-xl font-semibold text-black-800 truncate">{title}</h1>
+                    <h1 className="text-lg sm:text-xl font-semibold truncate" style={{ color: barTextColor }}>{title}</h1>
                   </div>
                 )}
               </div>
