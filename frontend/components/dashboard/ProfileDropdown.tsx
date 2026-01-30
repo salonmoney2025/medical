@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Modal } from '@/frontend/components/ui/Modal';
-import { Button } from '@/frontend/components/ui/Button';
 
 interface ProfileDropdownProps {
   user: {
@@ -17,6 +16,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [showChangePasswordModal, setShowChangePasswordModal] = useState(false);
+  const [profileImage, setProfileImage] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Password change form
@@ -28,6 +28,23 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
   const [passwordError, setPasswordError] = useState('');
   const [passwordSuccess, setPasswordSuccess] = useState('');
   const [passwordLoading, setPasswordLoading] = useState(false);
+
+  // Fetch profile image on mount
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      fetch('/api/users/profile-image', {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success && data.data?.profile_image) {
+            setProfileImage(data.data.profile_image);
+          }
+        })
+        .catch(() => {});
+    }
+  }, []);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -112,27 +129,35 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
     }
   };
 
+  const roleLabel = user.role === 'super_admin' ? 'Super Admin' : 'Medical Officer';
+
   return (
     <>
       <div className="relative" ref={dropdownRef}>
         {/* Profile Button */}
         <button
+          type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2 px-3 py-2 rounded hover:bg-gray-700 transition"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition"
         >
-          <div className="w-8 h-8 bg-primary-gold rounded-full flex items-center justify-center">
-            <span className="text-secondary-black font-semibold text-sm">
-              {user.full_name.charAt(0).toUpperCase()}
-            </span>
+          {/* Profile avatar */}
+          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-gray-200 shadow-sm flex items-center justify-center">
+            {profileImage ? (
+              <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">
+                  {user.full_name.charAt(0).toUpperCase()}
+                </span>
+              </div>
+            )}
           </div>
-          <div className="text-right hidden md:block">
-            <p className="text-sm text-white font-medium uppercase">
-              {user.role === 'super_admin' ? 'SUPER ADMIN' : 'MEDICAL OFFICER'}
-            </p>
-            <p className="text-xs text-primary-gold">{user.full_name}</p>
+          <div className="text-left hidden md:block">
+            <p className="text-sm font-semibold text-gray-800 leading-tight">{user.full_name}</p>
+            <p className="text-[11px] text-gray-500 leading-tight">{roleLabel}</p>
           </div>
           <svg
-            className="w-4 h-4 text-gray-400"
+            className="w-4 h-4 text-gray-400 hidden sm:block"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -148,45 +173,55 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50">
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
             {/* Signed in as */}
-            <div className="px-4 py-3 border-b border-gray-200">
-              <p className="text-xs text-gray-500">Signed in as</p>
-              <p className="text-sm text-gray-900 font-medium truncate">
-                {user.email}
-              </p>
+            <div className="px-4 py-3 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 shrink-0">
+                  {profileImage ? (
+                    <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">
+                        {user.full_name.charAt(0).toUpperCase()}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-semibold text-gray-900 truncate">{user.full_name}</p>
+                  <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                </div>
+              </div>
             </div>
 
             {/* Menu Items */}
-            <button
-              onClick={() => {
-                setIsOpen(false);
-                // Navigate to profile page if it exists
-              }}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 transition flex items-center gap-2"
-            >
-              <span>👤</span>
-              My Profile
-            </button>
+            <div className="py-1">
+              <button
+                type="button"
+                onClick={() => {
+                  setIsOpen(false);
+                  setShowChangePasswordModal(true);
+                }}
+                className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 transition flex items-center gap-3"
+              >
+                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+                Change Password
+              </button>
+            </div>
+
+            <div className="border-t border-gray-100 my-1" />
 
             <button
-              onClick={() => {
-                setIsOpen(false);
-                setShowChangePasswordModal(true);
-              }}
-              className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 transition flex items-center gap-2"
-            >
-              <span>🔒</span>
-              Change Password
-            </button>
-
-            <div className="border-t border-gray-200 my-1"></div>
-
-            <button
+              type="button"
               onClick={handleLogout}
-              className="w-full px-4 py-2 text-left text-sm text-red-600 hover:bg-red-50 transition flex items-center gap-2"
+              className="w-full px-4 py-2.5 text-left text-sm text-red-600 hover:bg-red-50 transition flex items-center gap-3"
             >
-              <span>🚪</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
               Log Out
             </button>
           </div>

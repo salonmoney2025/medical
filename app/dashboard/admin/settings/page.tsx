@@ -83,7 +83,7 @@ export default function SettingsPage() {
           sidebar_color: data.data.sidebar_color || '#000000',
           background_color: data.data.background_color || '#f0f0f0',
           accent_color: data.data.accent_color || '#22c55e',
-          alert_duration: data.data.alert_duration || '20000',
+          alert_duration: data.data.alert_duration || '10000',
         });
       }
     } catch {
@@ -356,9 +356,9 @@ export default function SettingsPage() {
               className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 text-gray-900"
             >
               <option value="5000">5 seconds</option>
-              <option value="10000">10 seconds</option>
+              <option value="10000">10 seconds (Default)</option>
               <option value="15000">15 seconds</option>
-              <option value="20000">20 seconds (Default)</option>
+              <option value="20000">20 seconds</option>
               <option value="30000">30 seconds</option>
             </select>
             <span className="text-sm text-gray-500">Currently: {parseInt(theme.alert_duration) / 1000}s</span>
