@@ -15,7 +15,7 @@ interface Admin {
 }
 
 const CAMPUSES = ['Magburaka Campus', 'Makeni Campus', 'Portloko Campus', 'University Secretariat'];
-const ROLES = ['Super Admin', 'University Medical Officer', 'Registrar', 'Registry'];
+const ROLES = ['Super Admin', 'University Medical Officer', 'Registrar', 'Deputy Registrar', 'Registry Staff', 'Medical Staff'];
 const DESIGNATIONS = ['Medical Officer', 'Admin', 'Dr', 'Vice-Chancellor and Principal', 'Deputy Registrar', 'Medical'];
 
 export default function AdminsPage() {
