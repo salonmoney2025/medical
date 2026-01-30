@@ -19,7 +19,7 @@ export default function GeneratedIDsPage() {
   const [loading, setLoading] = useState(true);
   const [searching, setSearching] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [filterType, setFilterType] = useState('ID/MAT');
+  const [filterType, setFilterType] = useState('Medical Report ID');
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage] = useState(20);
   const [revokeTarget, setRevokeTarget] = useState<GeneratedReport | null>(null);
@@ -74,7 +74,7 @@ export default function GeneratedIDsPage() {
 
     const term = searchTerm.toLowerCase();
     const filtered = reports.filter((report) => {
-      if (filterType === 'ID/MAT') {
+      if (filterType === 'Medical Report ID') {
         return (
           report.report_id.toLowerCase().includes(term) ||
           report.appid.toLowerCase().includes(term)
@@ -233,7 +233,7 @@ export default function GeneratedIDsPage() {
             onChange={(e) => setFilterType(e.target.value)}
             className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
-            <option value="ID/MAT">ID/MAT</option>
+            <option value="Medical Report ID">Medical Report ID</option>
             <option value="APPID">APPID</option>
             <option value="Full name">Full name</option>
             <option value="Program">Program</option>
@@ -247,7 +247,7 @@ export default function GeneratedIDsPage() {
             <thead className="bg-black-100 border-b border-black-300">
               <tr>
                 <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
-                  ID/MAT
+                  Medical Report ID
                 </th>
                 <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   APPID

@@ -66,7 +66,7 @@ Transformation of matriculation ID system into a comprehensive **Medical Report 
 #### Generated IDs Page (`/dashboard/admin/generated-ids`)
 - ✅ List all assigned medical report IDs
 - ✅ Multi-field search filter dropdown:
-  - ID/MAT
+  - Medical Report ID
   - APPID
   - Full name
   - Program
