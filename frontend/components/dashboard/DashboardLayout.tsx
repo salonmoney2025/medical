@@ -37,7 +37,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
     button_color: '#16a34a',
-    text_color: '#1f2937',
+    text_color: '#000000',
     bar_color: '#ffffff',
   });
 

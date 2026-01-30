@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
         campus as 'Campus',
         medical_report_id as 'Medical Report ID',
         report_status as 'Status',
-        health_percentage as 'Health %',
+        health_percentage as 'Health%',
         health_status as 'Health Status',
         created_at as 'Created Date'
       FROM students
