@@ -136,7 +136,7 @@ export default function AdminDashboard() {
 
             {/* Data by Campus Chart */}
             <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Data by Campus</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">DATA BY CAMPUS.</h2>
               {stats.campusData && stats.campusData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
                   <BarChart data={stats.campusData}>
