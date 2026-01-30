@@ -26,6 +26,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
     sidebar_color: '#000000',
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
+    button_color: '#16a34a',
+    text_color: '#1f2937',
+    bar_color: '#ffffff',
   });
 
   useEffect(() => {
@@ -60,6 +63,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
           sidebar_color: data.data.sidebar_color || '#000000',
           background_color: data.data.background_color || '#f0f0f0',
           accent_color: data.data.accent_color || '#22c55e',
+          button_color: data.data.button_color || '#16a34a',
+          text_color: data.data.text_color || '#1f2937',
+          bar_color: data.data.bar_color || '#ffffff',
         };
         setThemeColors(t);
         // Apply CSS variables
@@ -67,6 +73,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
         document.documentElement.style.setProperty('--theme-primary', t.primary_color);
         document.documentElement.style.setProperty('--theme-sidebar', t.sidebar_color);
         document.documentElement.style.setProperty('--theme-accent', t.accent_color);
+        document.documentElement.style.setProperty('--theme-button', t.button_color);
+        document.documentElement.style.setProperty('--theme-text', t.text_color);
+        document.documentElement.style.setProperty('--theme-bar', t.bar_color);
       }
     } catch {
       // Use defaults
@@ -82,7 +91,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   }
 
   return (
-    <div className="min-h-screen flex" style={{ backgroundColor: themeColors.background_color }}>
+    <div className="min-h-screen flex" style={{ backgroundColor: themeColors.background_color, color: themeColors.text_color }}>
       {/* Sidebar */}
       {showSidebar && (
         <Sidebar
@@ -97,7 +106,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       {/* Main Content Area */}
       <div className={`flex-1 w-full ${showSidebar ? 'lg:ml-64' : ''}`}>
         {/* Header */}
-        <header className="bg-white border-b border-black-200 sticky top-0 z-30 shadow-sm">
+        <header className="border-b border-black-200 sticky top-0 z-30 shadow-sm" style={{ backgroundColor: themeColors.bar_color }}>
           <div className="px-4 sm:px-6 py-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4 flex-1">

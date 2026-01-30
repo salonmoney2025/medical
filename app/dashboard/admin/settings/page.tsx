@@ -10,6 +10,9 @@ const PRESET_THEMES = [
     sidebar_color: '#000000',
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
+    button_color: '#16a34a',
+    text_color: '#1f2937',
+    bar_color: '#ffffff',
   },
   {
     name: 'Ocean Blue',
@@ -17,6 +20,9 @@ const PRESET_THEMES = [
     sidebar_color: '#0f172a',
     background_color: '#f0f4f8',
     accent_color: '#3b82f6',
+    button_color: '#2563eb',
+    text_color: '#1e293b',
+    bar_color: '#ffffff',
   },
   {
     name: 'Royal Purple',
@@ -24,6 +30,9 @@ const PRESET_THEMES = [
     sidebar_color: '#1e1b4b',
     background_color: '#f5f3ff',
     accent_color: '#8b5cf6',
+    button_color: '#7c3aed',
+    text_color: '#1e1b4b',
+    bar_color: '#ffffff',
   },
   {
     name: 'Warm Gold',
@@ -31,6 +40,9 @@ const PRESET_THEMES = [
     sidebar_color: '#1c1917',
     background_color: '#fffbeb',
     accent_color: '#f59e0b',
+    button_color: '#d97706',
+    text_color: '#1c1917',
+    bar_color: '#ffffff',
   },
   {
     name: 'Rose',
@@ -38,6 +50,9 @@ const PRESET_THEMES = [
     sidebar_color: '#1a1a2e',
     background_color: '#fff1f2',
     accent_color: '#f43f5e',
+    button_color: '#e11d48',
+    text_color: '#1a1a2e',
+    bar_color: '#ffffff',
   },
   {
     name: 'Teal',
@@ -45,6 +60,9 @@ const PRESET_THEMES = [
     sidebar_color: '#042f2e',
     background_color: '#f0fdfa',
     accent_color: '#14b8a6',
+    button_color: '#0d9488',
+    text_color: '#042f2e',
+    bar_color: '#ffffff',
   },
 ];
 
@@ -53,6 +71,9 @@ interface ThemeSettings {
   sidebar_color: string;
   background_color: string;
   accent_color: string;
+  button_color: string;
+  text_color: string;
+  bar_color: string;
   alert_duration: string;
 }
 
@@ -62,6 +83,9 @@ export default function SettingsPage() {
     sidebar_color: '#000000',
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
+    button_color: '#16a34a',
+    text_color: '#1f2937',
+    bar_color: '#ffffff',
     alert_duration: '10000',
   });
   const [loading, setLoading] = useState(true);
@@ -83,6 +107,9 @@ export default function SettingsPage() {
           sidebar_color: data.data.sidebar_color || '#000000',
           background_color: data.data.background_color || '#f0f0f0',
           accent_color: data.data.accent_color || '#22c55e',
+          button_color: data.data.button_color || '#16a34a',
+          text_color: data.data.text_color || '#1f2937',
+          bar_color: data.data.bar_color || '#ffffff',
           alert_duration: data.data.alert_duration || '10000',
         });
       }
@@ -128,6 +155,9 @@ export default function SettingsPage() {
     document.documentElement.style.setProperty('--theme-primary', t.primary_color);
     document.documentElement.style.setProperty('--theme-sidebar', t.sidebar_color);
     document.documentElement.style.setProperty('--theme-accent', t.accent_color);
+    document.documentElement.style.setProperty('--theme-button', t.button_color);
+    document.documentElement.style.setProperty('--theme-text', t.text_color);
+    document.documentElement.style.setProperty('--theme-bar', t.bar_color);
   };
 
   const applyPreset = (preset: typeof PRESET_THEMES[number]) => {
@@ -136,6 +166,9 @@ export default function SettingsPage() {
       sidebar_color: preset.sidebar_color,
       background_color: preset.background_color,
       accent_color: preset.accent_color,
+      button_color: preset.button_color,
+      text_color: preset.text_color,
+      bar_color: preset.bar_color,
       alert_duration: theme.alert_duration,
     };
     setTheme(newTheme);
@@ -298,6 +331,72 @@ export default function SettingsPage() {
                 />
               </div>
             </div>
+
+            {/* Button Color */}
+            <div>
+              <label className="block text-sm font-medium text-black-700 mb-2">
+                Button Color
+              </label>
+              <p className="text-xs text-black-400 mb-2">Action buttons and submit controls</p>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={theme.button_color}
+                  onChange={(e) => handleColorChange('button_color', e.target.value)}
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
+                />
+                <input
+                  type="text"
+                  value={theme.button_color}
+                  onChange={(e) => handleColorChange('button_color', e.target.value)}
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
+                />
+              </div>
+            </div>
+
+            {/* Text Color */}
+            <div>
+              <label className="block text-sm font-medium text-black-700 mb-2">
+                Text Color
+              </label>
+              <p className="text-xs text-black-400 mb-2">Main body text throughout the app</p>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={theme.text_color}
+                  onChange={(e) => handleColorChange('text_color', e.target.value)}
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
+                />
+                <input
+                  type="text"
+                  value={theme.text_color}
+                  onChange={(e) => handleColorChange('text_color', e.target.value)}
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
+                />
+              </div>
+            </div>
+
+            {/* Bar Color */}
+            <div>
+              <label className="block text-sm font-medium text-black-700 mb-2">
+                Top Bar Color
+              </label>
+              <p className="text-xs text-black-400 mb-2">Header navigation bar background</p>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={theme.bar_color}
+                  onChange={(e) => handleColorChange('bar_color', e.target.value)}
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
+                />
+                <input
+                  type="text"
+                  value={theme.bar_color}
+                  onChange={(e) => handleColorChange('bar_color', e.target.value)}
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -308,6 +407,14 @@ export default function SettingsPage() {
             className="rounded-xl p-6 border"
             style={{ backgroundColor: theme.background_color, borderColor: '#e5e7eb' }}
           >
+            {/* Mini top bar preview */}
+            <div
+              className="rounded-t-lg px-4 py-2 flex justify-between items-center mb-3"
+              style={{ backgroundColor: theme.bar_color, border: '1px solid #e5e7eb' }}
+            >
+              <span className="text-xs font-semibold" style={{ color: theme.text_color }}>Page Title</span>
+              <div className="w-6 h-6 rounded-full" style={{ backgroundColor: theme.primary_color }} />
+            </div>
             <div className="flex gap-4">
               {/* Mini sidebar preview */}
               <div
@@ -322,21 +429,22 @@ export default function SettingsPage() {
               <div className="flex-1 space-y-3">
                 <div className="bg-white rounded-lg p-3 border border-black-200">
                   <div className="h-3 w-32 rounded mb-2" style={{ backgroundColor: theme.primary_color }} />
-                  <div className="h-2 w-full rounded bg-black-200" />
-                  <div className="h-2 w-3/4 rounded bg-black-200 mt-1" />
+                  <div className="h-2 w-full rounded" style={{ backgroundColor: theme.text_color, opacity: 0.2 }} />
+                  <div className="h-2 w-3/4 rounded mt-1" style={{ backgroundColor: theme.text_color, opacity: 0.15 }} />
+                  <p className="text-[10px] mt-2" style={{ color: theme.text_color }}>Sample text preview</p>
                 </div>
                 <div className="flex gap-3">
                   <div
                     className="px-4 py-2 rounded-lg text-white text-xs font-medium"
-                    style={{ backgroundColor: theme.primary_color }}
+                    style={{ backgroundColor: theme.button_color }}
                   >
-                    Primary Button
+                    Button
                   </div>
                   <div
                     className="px-4 py-2 rounded-lg text-white text-xs font-medium"
                     style={{ backgroundColor: theme.accent_color }}
                   >
-                    Accent Button
+                    Accent
                   </div>
                 </div>
               </div>

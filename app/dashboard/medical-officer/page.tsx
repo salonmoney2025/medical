@@ -12,7 +12,7 @@ import { Student, MedicalFormData } from '@/backend/server/types';
 // Constants & Configuration
 // ============================================================================
 
-const VISUAL_ACUITY_PRESETS = ['20/20', '20/25', '20/30', '20/40', '20/50', '20/60', '20/80', '20/100', '20/200', '20/400'] as const;
+const VISUAL_ACUITY_PRESETS = ['6/6', '6/9', '6/12', '6/18', '6/24', '6/36', '6/60', '20/20', '20/40', '20/200'] as const;
 
 const BLOOD_GROUPS = [
   { value: '', label: 'SELECT BLOOD GROUP' },
@@ -114,24 +114,12 @@ function VisualAcuityInput({
   name,
   value,
   onChange,
-  placeholder = 'e.g., 20/20',
+  placeholder = 'e.g., 6/6, 20/20',
   error,
 }: VisualAcuityInputProps) {
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(name, e.target.value);
   }, [name, onChange]);
-
-  const handleKeyDown = useCallback((e: React.KeyboardEvent<HTMLInputElement>) => {
-    // Allow navigation keys and common input characters
-    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Backspace', 'Delete', 'Tab'].includes(e.key)) {
-      return;
-    }
-    // Only allow digits, slash, and common input patterns
-    const allowedPattern = /^[0-9/]$/;
-    if (!allowedPattern.test(e.key)) {
-      e.preventDefault();
-    }
-  }, []);
 
   return (
     <div className="w-full">
@@ -148,7 +136,6 @@ function VisualAcuityInput({
           placeholder={placeholder}
           value={value || ''}
           onChange={handleChange}
-          onKeyDown={handleKeyDown}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
         />
@@ -227,18 +214,6 @@ export default function MedicalOfficerDashboard() {
         errors.height = 'Height must be between 50-250 cm';
         isValid = false;
       }
-    }
-
-    // Visual acuity format validation (e.g., 20/20, 20/40)
-    const acuityPattern = /^\d{2}\/\d{2,3}$/;
-    if (formData.visual_acuity_le && !acuityPattern.test(formData.visual_acuity_le)) {
-      errors.visual_acuity_le = 'Use format: 20/20, 20/40, etc.';
-      isValid = false;
-    }
-
-    if (formData.visual_acuity_re && !acuityPattern.test(formData.visual_acuity_re)) {
-      errors.visual_acuity_re = 'Use format: 20/20, 20/40, etc.';
-      isValid = false;
     }
 
     // Health percentage validation
