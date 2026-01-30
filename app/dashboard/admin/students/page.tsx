@@ -228,7 +228,7 @@ export default function StudentsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">List of Students</h1>
+          <h1 className="text-2xl font-bold text-black-900">List of Students</h1>
           <div className="flex gap-3">
             <button
               onClick={fetchStudents}
@@ -253,7 +253,7 @@ export default function StudentsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black-400">
                 🔍
               </span>
               <input
@@ -262,7 +262,7 @@ export default function StudentsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${filterType.toLowerCase()}...`}
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-black-800 placeholder-black-500"
               />
             </div>
             <button
@@ -277,7 +277,7 @@ export default function StudentsPage() {
               <button
                 type="button"
                 onClick={handleClearSearch}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium whitespace-nowrap"
+                className="px-4 py-2 bg-black-200 text-black-700 rounded-lg hover:bg-black-300 transition font-medium whitespace-nowrap"
               >
                 Clear
               </button>
@@ -287,7 +287,7 @@ export default function StudentsPage() {
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             title="Filter type"
-            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
+            className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
             <option value="APPID">APPID</option>
             <option value="Full name">Full name</option>
@@ -297,23 +297,23 @@ export default function StudentsPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-300 overflow-hidden">
+        <div className="bg-white rounded-lg border border-black-300 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-gray-100 border-b border-gray-300">
+            <thead className="bg-black-100 border-b border-black-300">
               <tr>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   APPID
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Full name
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Program
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Campus
                 </th>
-                <th className="text-right px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-right px-6 py-3 text-sm font-semibold text-black-700">
                   Actions
                 </th>
               </tr>
@@ -321,13 +321,13 @@ export default function StudentsPage() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-8 text-gray-500">
+                  <td colSpan={5} className="text-center py-8 text-black-500">
                     Loading...
                   </td>
                 </tr>
               ) : currentStudents.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-8 text-gray-500">
+                  <td colSpan={5} className="text-center py-8 text-black-500">
                     No students found
                   </td>
                 </tr>
@@ -335,25 +335,25 @@ export default function StudentsPage() {
                 currentStudents.map((student) => (
                   <tr
                     key={student.id}
-                    className="border-b border-gray-200 hover:bg-gray-50"
+                    className="border-b border-black-200 hover:bg-black-50"
                   >
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {student.appid || student.matriculation_number}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {student.name}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {student.program}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {student.campus || 'N/A'}
                     </td>
                     <td className="px-6 py-4 text-right">
                       <div className="flex items-center justify-end gap-2">
                         <button
                           onClick={() => openEditModal(student)}
-                          className="px-3 py-1.5 text-sm border border-gray-300 rounded-lg hover:bg-gray-100 transition"
+                          className="px-3 py-1.5 text-sm border border-black-300 rounded-lg hover:bg-black-100 transition"
                         >
                           Edit
                         </button>
@@ -373,10 +373,10 @@ export default function StudentsPage() {
 
           {/* Pagination */}
           {!loading && filteredStudents.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-black-200 bg-black-50">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Rows per page</span>
-                <span className="text-sm font-semibold text-gray-900">
+                <span className="text-sm text-black-700">Rows per page</span>
+                <span className="text-sm font-semibold text-black-900">
                   {rowsPerPage}
                 </span>
               </div>
@@ -388,7 +388,7 @@ export default function StudentsPage() {
                     className={`w-8 h-8 rounded ${
                       currentPage === i + 1
                         ? 'bg-orange-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        : 'bg-black-200 text-black-700 hover:bg-black-300'
                     }`}
                   >
                     {i + 1}
@@ -396,8 +396,8 @@ export default function StudentsPage() {
                 ))}
                 {totalPages > 5 && (
                   <>
-                    <span className="text-gray-500">...</span>
-                    <span className="text-sm text-gray-700">{totalPages}</span>
+                    <span className="text-black-500">...</span>
+                    <span className="text-sm text-black-700">{totalPages}</span>
                   </>
                 )}
               </div>
@@ -420,7 +420,7 @@ export default function StudentsPage() {
               onChange={(e) =>
                 setEnrollForm({ ...enrollForm, appid: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
             <input
@@ -430,7 +430,7 @@ export default function StudentsPage() {
               onChange={(e) =>
                 setEnrollForm({ ...enrollForm, name: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
             <input
@@ -440,7 +440,7 @@ export default function StudentsPage() {
               onChange={(e) =>
                 setEnrollForm({ ...enrollForm, program: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
             <select
@@ -448,7 +448,7 @@ export default function StudentsPage() {
               onChange={(e) =>
                 setEnrollForm({ ...enrollForm, academic_year: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Academic year</option>
@@ -463,7 +463,7 @@ export default function StudentsPage() {
               onChange={(e) =>
                 setEnrollForm({ ...enrollForm, campus: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Campus</option>
@@ -477,7 +477,7 @@ export default function StudentsPage() {
               <button
                 type="button"
                 onClick={() => setShowEnrollModal(false)}
-                className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+                className="px-6 py-2 border border-black-300 rounded hover:bg-black-100 transition"
               >
                 CANCEL
               </button>
@@ -501,7 +501,7 @@ export default function StudentsPage() {
           {selectedStudent && (
             <form onSubmit={handleEditStudent} className="space-y-4">
               <div>
-                <label className="block text-sm text-gray-600 mb-1">
+                <label className="block text-sm text-black-600 mb-1">
                   Full name
                 </label>
                 <input
@@ -513,12 +513,12 @@ export default function StudentsPage() {
                       name: e.target.value,
                     })
                   }
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">
+                <label className="block text-sm text-black-600 mb-1">
                   Program
                 </label>
                 <input
@@ -530,12 +530,12 @@ export default function StudentsPage() {
                       program: e.target.value,
                     })
                   }
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">
+                <label className="block text-sm text-black-600 mb-1">
                   Academic year
                 </label>
                 <input
@@ -547,11 +547,11 @@ export default function StudentsPage() {
                       academic_year: e.target.value,
                     })
                   }
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div>
-                <label className="block text-sm text-gray-600 mb-1">
+                <label className="block text-sm text-black-600 mb-1">
                   Campus
                 </label>
                 <input
@@ -563,14 +563,14 @@ export default function StudentsPage() {
                       campus: e.target.value,
                     })
                   }
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
                 />
               </div>
               <div className="flex justify-end gap-3 pt-4">
                 <button
                   type="button"
                   onClick={() => setShowEditModal(false)}
-                  className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+                  className="px-6 py-2 border border-black-300 rounded hover:bg-black-100 transition"
                 >
                   CANCEL
                 </button>
@@ -588,18 +588,18 @@ export default function StudentsPage() {
         {/* Delete Confirmation Modal */}
         {deleteTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white border border-gray-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
+            <div className="bg-white border border-black-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Delete Student</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  Are you sure you want to delete <span className="font-semibold text-gray-900">{deleteTarget.name}</span>?
+                <h3 className="text-lg font-bold text-black-900">Delete Student</h3>
+                <p className="text-sm text-black-600 mt-2">
+                  Are you sure you want to delete <span className="font-semibold text-black-900">{deleteTarget.name}</span>?
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-black-500 mt-1">
                   APPID: <span className="font-mono font-semibold">{deleteTarget.appid}</span>
                 </p>
                 <p className="text-xs text-red-500 mt-2">This action cannot be undone.</p>
@@ -608,14 +608,14 @@ export default function StudentsPage() {
                 <button
                   onClick={() => setDeleteTarget(null)}
                   disabled={deleting}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-xl font-semibold hover:bg-gray-50 transition"
+                  className="flex-1 px-4 py-3 border border-black-300 rounded-xl font-semibold hover:bg-black-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleDeleteStudent}
                   disabled={deleting}
-                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-gray-300"
+                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-black-300"
                 >
                   {deleting ? 'Deleting...' : 'Delete'}
                 </button>
@@ -640,10 +640,10 @@ export default function StudentsPage() {
                     </svg>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">
+                <h3 className="text-lg font-bold text-black-900">
                   {deleteResult.success ? 'Student Deleted' : 'Delete Failed'}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">{deleteResult.message}</p>
+                <p className="text-sm text-black-600 mt-1">{deleteResult.message}</p>
               </div>
               <button
                 onClick={() => setDeleteResult({ show: false, success: false, message: '' })}

@@ -176,7 +176,7 @@ export default function GeneratedIDsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-black-900">
             List of Generated IDs
           </h1>
           <div className="flex gap-3">
@@ -187,10 +187,10 @@ export default function GeneratedIDsPage() {
               <span>🔄</span>
               Refresh
             </button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded hover:bg-gray-50 transition">
+            <button className="px-4 py-2 bg-white border border-black-300 rounded hover:bg-black-50 transition">
               📥
             </button>
-            <button className="px-4 py-2 bg-white border border-gray-300 rounded hover:bg-gray-50 transition">
+            <button className="px-4 py-2 bg-white border border-black-300 rounded hover:bg-black-50 transition">
               🖨️
             </button>
           </div>
@@ -200,7 +200,7 @@ export default function GeneratedIDsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black-400">
                 🔍
               </span>
               <input
@@ -209,7 +209,7 @@ export default function GeneratedIDsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${filterType.toLowerCase()}...`}
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-black-800 placeholder-black-500"
               />
             </div>
             <button
@@ -222,7 +222,7 @@ export default function GeneratedIDsPage() {
             {searchTerm && (
               <button
                 onClick={handleClearSearch}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium whitespace-nowrap"
+                className="px-4 py-2 bg-black-200 text-black-700 rounded-lg hover:bg-black-300 transition font-medium whitespace-nowrap"
               >
                 Clear
               </button>
@@ -231,7 +231,7 @@ export default function GeneratedIDsPage() {
           <select
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
-            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
+            className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
             <option value="ID/MAT">ID/MAT</option>
             <option value="APPID">APPID</option>
@@ -242,29 +242,29 @@ export default function GeneratedIDsPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-300 overflow-hidden">
+        <div className="bg-white rounded-lg border border-black-300 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-gray-100 border-b border-gray-300">
+            <thead className="bg-black-100 border-b border-black-300">
               <tr>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   ID/MAT
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   APPID
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Full name
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Program
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Campus
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Mode
                 </th>
-                <th className="text-right px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-right px-6 py-3 text-sm font-semibold text-black-700">
                   Actions
                 </th>
               </tr>
@@ -272,13 +272,13 @@ export default function GeneratedIDsPage() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-8 text-gray-500">
+                  <td colSpan={7} className="text-center py-8 text-black-500">
                     Loading...
                   </td>
                 </tr>
               ) : currentReports.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-8 text-gray-500">
+                  <td colSpan={7} className="text-center py-8 text-black-500">
                     No generated reports found
                   </td>
                 </tr>
@@ -286,29 +286,29 @@ export default function GeneratedIDsPage() {
                 currentReports.map((report) => (
                   <tr
                     key={report.id}
-                    className="border-b border-gray-200 hover:bg-gray-50"
+                    className="border-b border-black-200 hover:bg-black-50"
                   >
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {report.report_id}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {report.appid}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {report.full_name}
                     </td>
                     <td className="px-6 py-4 text-sm text-blue-600">
                       {report.program}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {report.campus}
                     </td>
                     <td className="px-6 py-4">
                       <span
                         className={`px-3 py-1 rounded text-sm font-semibold ${
                           report.status === 'assigned'
-                            ? 'bg-yellow-400 text-gray-900'
-                            : 'bg-gray-200 text-gray-700'
+                            ? 'bg-yellow-400 text-black-900'
+                            : 'bg-black-200 text-black-700'
                         }`}
                       >
                         {report.status === 'assigned' ? 'Assigned' : 'Pending'}
@@ -319,7 +319,7 @@ export default function GeneratedIDsPage() {
                         {report.status !== 'assigned' && (
                           <button
                             onClick={() => handleAssign(report.id)}
-                            className="px-3 py-1 bg-yellow-400 text-gray-900 rounded text-sm font-semibold hover:bg-yellow-500 transition"
+                            className="px-3 py-1 bg-yellow-400 text-black-900 rounded text-sm font-semibold hover:bg-yellow-500 transition"
                           >
                             Assigned
                           </button>
@@ -340,10 +340,10 @@ export default function GeneratedIDsPage() {
 
           {/* Pagination */}
           {!loading && filteredReports.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-black-200 bg-black-50">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Rows per page</span>
-                <span className="text-sm font-semibold text-gray-900">
+                <span className="text-sm text-black-700">Rows per page</span>
+                <span className="text-sm font-semibold text-black-900">
                   {rowsPerPage}
                 </span>
               </div>
@@ -355,7 +355,7 @@ export default function GeneratedIDsPage() {
                     className={`w-8 h-8 rounded ${
                       currentPage === i + 1
                         ? 'bg-orange-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        : 'bg-black-200 text-black-700 hover:bg-black-300'
                     }`}
                   >
                     {i + 1}
@@ -363,8 +363,8 @@ export default function GeneratedIDsPage() {
                 ))}
                 {totalPages > 5 && (
                   <>
-                    <span className="text-gray-500">...</span>
-                    <span className="text-sm text-gray-700">{totalPages}</span>
+                    <span className="text-black-500">...</span>
+                    <span className="text-sm text-black-700">{totalPages}</span>
                   </>
                 )}
               </div>
@@ -375,18 +375,18 @@ export default function GeneratedIDsPage() {
         {/* Revoke Confirmation Modal */}
         {revokeTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white border border-gray-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
+            <div className="bg-white border border-black-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Revoke Medical Report ID</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  Are you sure you want to revoke the medical report ID for <span className="font-semibold text-gray-900">{revokeTarget.full_name}</span>?
+                <h3 className="text-lg font-bold text-black-900">Revoke Medical Report ID</h3>
+                <p className="text-sm text-black-600 mt-2">
+                  Are you sure you want to revoke the medical report ID for <span className="font-semibold text-black-900">{revokeTarget.full_name}</span>?
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-black-500 mt-1">
                   Report ID: <span className="font-mono font-semibold">{revokeTarget.report_id}</span>
                 </p>
                 <p className="text-xs text-red-500 mt-2">This action will remove the assigned ID and password.</p>
@@ -395,14 +395,14 @@ export default function GeneratedIDsPage() {
                 <button
                   onClick={() => setRevokeTarget(null)}
                   disabled={revoking}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-xl font-semibold hover:bg-gray-50 transition"
+                  className="flex-1 px-4 py-3 border border-black-300 rounded-xl font-semibold hover:bg-black-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleRevoke}
                   disabled={revoking}
-                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-gray-300"
+                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-black-300"
                 >
                   {revoking ? 'Revoking...' : 'Revoke'}
                 </button>
@@ -427,10 +427,10 @@ export default function GeneratedIDsPage() {
                     </svg>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">
+                <h3 className="text-lg font-bold text-black-900">
                   {revokeResult.success ? 'Revoked Successfully' : 'Revoke Failed'}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">{revokeResult.message}</p>
+                <p className="text-sm text-black-600 mt-1">{revokeResult.message}</p>
               </div>
               <button
                 onClick={() => setRevokeResult({ show: false, success: false, message: '' })}

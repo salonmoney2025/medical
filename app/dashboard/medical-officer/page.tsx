@@ -142,8 +142,8 @@ function VisualAcuityInput({
         <input
           type="text"
           list={`${name}-presets`}
-          className={`w-full px-4 py-2 bg-secondary-mediumGray text-black placeholder-black-400 border rounded focus:outline-none focus:border-primary-gold transition ${
-            error ? 'border-red-500' : 'border-secondary-lightGray'
+          className={`w-full px-4 py-2 bg-secondary-mediumblack text-black placeholder-black-400 border rounded focus:outline-none focus:border-primary-gold transition ${
+            error ? 'border-red-500' : 'border-secondary-lightblack'
           }`}
           placeholder={placeholder}
           value={value || ''}
@@ -391,7 +391,7 @@ export default function MedicalOfficerDashboard() {
                 value={matriculationNumber}
                 onChange={(e) => setMatriculationNumber(e.target.value)}
                 onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
-                className="flex-1 px-4 py-2 bg-secondary-mediumGray text-black placeholder-gray-400 border border-secondary-lightGray rounded focus:outline-none focus:border-primary-gold transition"
+                className="flex-1 px-4 py-2 bg-secondary-mediumblack text-black placeholder-black-400 border border-secondary-lightblack rounded focus:outline-none focus:border-primary-gold transition"
               />
             </div>
             <button
@@ -493,7 +493,7 @@ export default function MedicalOfficerDashboard() {
                       <select
                         value={formData.blood_group || ''}
                         onChange={(e) => handleFormChange('blood_group', e.target.value)}
-                        className="w-full px-4 py-2 bg-secondary-mediumGray text-black border border-secondary-lightGray rounded focus:outline-none focus:border-primary-gold transition"
+                        className="w-full px-4 py-2 bg-secondary-mediumblack text-black border border-secondary-lightblack rounded focus:outline-none focus:border-primary-gold transition"
                       >
                         {BLOOD_GROUPS.map((bg) => (
                           <option key={bg.value} value={bg.value}>
@@ -515,7 +515,7 @@ export default function MedicalOfficerDashboard() {
                       <select
                         value={formData.health_status || ''}
                         onChange={(e) => handleFormChange('health_status', e.target.value)}
-                        className="w-full px-4 py-2 bg-secondary-mediumGray text-black border border-secondary-lightGray rounded-lg focus:outline-none focus:border-primary-gold transition"
+                        className="w-full px-4 py-2 bg-secondary-mediumblack text-black border border-secondary-lightblack rounded-lg focus:outline-none focus:border-primary-gold transition"
                       >
                         {HEALTH_STATUSES.map((status) => (
                           <option key={status.value} value={status.value}>
@@ -550,7 +550,7 @@ export default function MedicalOfficerDashboard() {
                         value={formData.diagnosis || ''}
                         onChange={(e) => handleFormChange('diagnosis', e.target.value)}
                         placeholder="Enter detailed medical diagnosis..."
-                        className="w-full px-4 py-2 bg-secondary-mediumGray text-black placeholder-gray-400 border border-secondary-lightGray rounded-lg focus:outline-none focus:border-primary-gold transition resize-y min-h-[120px]"
+                        className="w-full px-4 py-2 bg-secondary-mediumblack text-black placeholder-black-400 border border-secondary-lightblack rounded-lg focus:outline-none focus:border-primary-gold transition resize-y min-h-[120px]"
                         aria-invalid={!!formErrors.diagnosis}
                       />
                       {formErrors.diagnosis && (
@@ -570,7 +570,7 @@ export default function MedicalOfficerDashboard() {
                       value={formData.recommendations || ''}
                       onChange={(e) => handleFormChange('recommendations', e.target.value)}
                       placeholder="Enter any recommendations or follow-up instructions..."
-                      className="w-full px-4 py-2 bg-secondary-mediumGray text-black placeholder-gray-400 border border-secondary-lightGray rounded-lg focus:outline-none focus:border-primary-gold transition resize-y min-h-[80px]"
+                      className="w-full px-4 py-2 bg-secondary-mediumblack text-black placeholder-black-400 border border-secondary-lightblack rounded-lg focus:outline-none focus:border-primary-gold transition resize-y min-h-[80px]"
                     />
                   </div>
                 </FormSection>
@@ -609,23 +609,23 @@ export default function MedicalOfficerDashboard() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Medical Report Submitted</h3>
-                <p className="text-sm text-gray-600 mt-1">Student account has been generated successfully.</p>
+                <h3 className="text-lg font-bold text-black-900">Medical Report Submitted</h3>
+                <p className="text-sm text-black-600 mt-1">Student account has been generated successfully.</p>
               </div>
-              <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4 space-y-3">
+              <div className="bg-white border border-black-200 rounded-xl p-4 mb-4 space-y-3">
                 <div>
-                  <span className="text-xs text-gray-500 font-medium">Medical Report ID</span>
+                  <span className="text-xs text-black-500 font-medium">Medical Report ID</span>
                   <p className="text-sm font-bold text-green-700">{successData.medical_report_id}</p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-500 font-medium">Student APPID (Login Username)</span>
-                  <p className="text-sm font-bold text-gray-900">{successData.appid}</p>
+                  <span className="text-xs text-black-500 font-medium">Student APPID (Login Username)</span>
+                  <p className="text-sm font-bold text-black-900">{successData.appid}</p>
                 </div>
                 <div>
-                  <span className="text-xs text-gray-500 font-medium">Student Password</span>
-                  <p className="text-sm font-bold text-gray-900">{successData.student_password}</p>
+                  <span className="text-xs text-black-500 font-medium">Student Password</span>
+                  <p className="text-sm font-bold text-black-900">{successData.student_password}</p>
                 </div>
-                <div className="border-t border-gray-100 pt-2">
+                <div className="border-t border-black-100 pt-2">
                   <p className="text-xs text-orange-600">Save these credentials. The student can login at /student/login with their APPID and password.</p>
                 </div>
               </div>

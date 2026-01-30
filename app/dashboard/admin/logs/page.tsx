@@ -132,7 +132,7 @@ export default function LogsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">System Logs</h1>
+          <h1 className="text-2xl font-bold text-black-900">System Logs</h1>
           <button
             onClick={fetchLogs}
             className="flex items-center gap-2 px-4 py-2 bg-red-100 text-red-600 rounded hover:bg-red-200 transition"
@@ -146,7 +146,7 @@ export default function LogsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black-400">
                 🔍
               </span>
               <input
@@ -155,7 +155,7 @@ export default function LogsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${filterType}...`}
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-black-800 placeholder-black-500"
               />
             </div>
             <button
@@ -170,7 +170,7 @@ export default function LogsPage() {
               <button
                 type="button"
                 onClick={handleClearSearch}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium whitespace-nowrap"
+                className="px-4 py-2 bg-black-200 text-black-700 rounded-lg hover:bg-black-300 transition font-medium whitespace-nowrap"
               >
                 Clear
               </button>
@@ -180,7 +180,7 @@ export default function LogsPage() {
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             title="Filter type"
-            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
+            className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
             <option value="initiator">Initiator</option>
             <option value="action">Action</option>
@@ -189,23 +189,23 @@ export default function LogsPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-300 overflow-hidden">
+        <div className="bg-white rounded-lg border border-black-300 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-gray-100 border-b border-gray-300">
+            <thead className="bg-black-100 border-b border-black-300">
               <tr>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Action
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Initiator
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Status
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Role
                 </th>
-                <th className="text-right px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-right px-6 py-3 text-sm font-semibold text-black-700">
                   Date
                 </th>
               </tr>
@@ -213,13 +213,13 @@ export default function LogsPage() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-8 text-gray-500">
+                  <td colSpan={5} className="text-center py-8 text-black-500">
                     Loading...
                   </td>
                 </tr>
               ) : currentLogs.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="text-center py-8 text-gray-500">
+                  <td colSpan={5} className="text-center py-8 text-black-500">
                     No logs found
                   </td>
                 </tr>
@@ -227,7 +227,7 @@ export default function LogsPage() {
                 currentLogs.map((log) => (
                   <tr
                     key={log.id}
-                    className="border-b border-gray-200 hover:bg-gray-50"
+                    className="border-b border-black-200 hover:bg-black-50"
                   >
                     <td className="px-6 py-4 text-sm text-blue-600">
                       {log.action}
@@ -246,10 +246,10 @@ export default function LogsPage() {
                         {log.status}
                       </span>
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                    <td className="px-6 py-4 text-sm text-black-900">
                       {log.role}
                     </td>
-                    <td className="px-6 py-4 text-right text-sm text-gray-600">
+                    <td className="px-6 py-4 text-right text-sm text-black-600">
                       {formatDate(log.created_at)}
                     </td>
                   </tr>
@@ -260,10 +260,10 @@ export default function LogsPage() {
 
           {/* Pagination */}
           {!loading && filteredLogs.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-black-200 bg-black-50">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Rows per page</span>
-                <span className="text-sm font-semibold text-gray-900">
+                <span className="text-sm text-black-700">Rows per page</span>
+                <span className="text-sm font-semibold text-black-900">
                   {rowsPerPage}
                 </span>
               </div>
@@ -275,7 +275,7 @@ export default function LogsPage() {
                     className={`w-8 h-8 rounded ${
                       currentPage === i + 1
                         ? 'bg-orange-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        : 'bg-black-200 text-black-700 hover:bg-black-300'
                     }`}
                   >
                     {i + 1}
@@ -283,8 +283,8 @@ export default function LogsPage() {
                 ))}
                 {totalPages > 5 && (
                   <>
-                    <span className="text-gray-500">...</span>
-                    <span className="text-sm text-gray-700">{totalPages}</span>
+                    <span className="text-black-500">...</span>
+                    <span className="text-sm text-black-700">{totalPages}</span>
                   </>
                 )}
               </div>

@@ -19,10 +19,10 @@ export const StatCard: React.FC<StatCardProps> = ({
 }) => {
   const variantClasses = {
     default: {
-      border: 'border-gray-200',
-      value: 'text-gray-900',
+      border: 'border-black-200',
+      value: 'text-black-900',
       bg: 'bg-white',
-      accent: 'text-gray-600',
+      accent: 'text-black-600',
     },
     primary: {
       border: 'border-blue-200',
@@ -50,7 +50,7 @@ export const StatCard: React.FC<StatCardProps> = ({
     <div
       className={`${styles.bg} rounded-lg p-6 border-2 ${styles.border} hover:border-yellow-500 transition-all shadow-sm hover:shadow-md`}
     >
-      <h3 className="text-sm font-medium text-gray-600 mb-2 uppercase tracking-wide">{title}</h3>
+      <h3 className="text-sm font-medium text-black-600 mb-2 uppercase tracking-wide">{title}</h3>
       <p className={`text-3xl sm:text-4xl font-bold ${styles.value} mb-1`}>
         {typeof value === 'number' ? value.toLocaleString() : value}
       </p>

@@ -7,6 +7,7 @@ interface DashboardStatistics {
   totalStudentsUploaded: number;
   matriculationIdAssigned: number;
   matriculationIdPending: number;
+  studentsWithRecords: number;
   campusData: Array<{
     campus: string;
     count: number;
@@ -33,6 +34,13 @@ async function getDashboardStatsHandler(request: NextRequest) {
     // Calculate pending (for now, this could be based on a status field)
     const pendingIds = totalStudents - assignedIds;
 
+    // Get students with medical records
+    const withRecordsQuery = `
+      SELECT COUNT(DISTINCT student_id) as count FROM medical_records
+    `;
+    const withRecordsResult = await executeQuery(withRecordsQuery);
+    const studentsWithRecords = withRecordsResult[0]?.count || 0;
+
     // Get campus data - group by campus field
     const campusQuery = `
       SELECT COALESCE(campus, faculty, 'Unknown') as campus, COUNT(*) as count
@@ -46,6 +54,7 @@ async function getDashboardStatsHandler(request: NextRequest) {
       totalStudentsUploaded: totalStudents,
       matriculationIdAssigned: assignedIds,
       matriculationIdPending: pendingIds,
+      studentsWithRecords,
       campusData: campusResult || [],
     };
 

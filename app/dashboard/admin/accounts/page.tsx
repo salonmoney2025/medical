@@ -355,7 +355,7 @@ export default function AccountsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <h1 className="text-2xl font-bold text-gray-900">List of Accounts</h1>
+          <h1 className="text-2xl font-bold text-black-900">List of Accounts</h1>
           <div className="flex flex-wrap gap-3">
             <button
               onClick={handleExportToExcel}
@@ -366,7 +366,7 @@ export default function AccountsPage() {
             </button>
             <button
               onClick={fetchAccounts}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-black-300 text-black-700 rounded-lg hover:bg-black-50 transition shadow-sm"
             >
               <span>🔄</span>
               Refresh
@@ -385,7 +385,7 @@ export default function AccountsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black-400">
                 🔍
               </span>
               <input
@@ -394,7 +394,7 @@ export default function AccountsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${filterType.toLowerCase()}...`}
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-800 placeholder-gray-500 shadow-sm"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-yellow-500 text-black-800 placeholder-black-500 shadow-sm"
               />
             </div>
             <button
@@ -409,7 +409,7 @@ export default function AccountsPage() {
               <button
                 type="button"
                 onClick={handleClearSearch}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium whitespace-nowrap"
+                className="px-4 py-2 bg-black-200 text-black-700 rounded-lg hover:bg-black-300 transition font-medium whitespace-nowrap"
               >
                 Clear
               </button>
@@ -419,7 +419,7 @@ export default function AccountsPage() {
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             title="Filter type"
-            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 shadow-sm"
+            className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-yellow-500 shadow-sm"
           >
             <option value="APPID">APPID</option>
             <option value="Full name">Full name</option>
@@ -428,27 +428,27 @@ export default function AccountsPage() {
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-200 overflow-hidden shadow-sm">
+        <div className="bg-white rounded-lg border border-black-200 overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
+              <thead className="bg-black-50 border-b border-black-200">
                 <tr>
-                  <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                     APPID
                   </th>
-                  <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                     Full name
                   </th>
-                  <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                     Program
                   </th>
-                  <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                     Status
                   </th>
-                  <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                     Password
                   </th>
-                  <th className="text-right px-6 py-3 text-sm font-semibold text-gray-700">
+                  <th className="text-right px-6 py-3 text-sm font-semibold text-black-700">
                     Actions
                   </th>
                 </tr>
@@ -456,13 +456,13 @@ export default function AccountsPage() {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={6} className="text-center py-8 text-gray-500">
+                    <td colSpan={6} className="text-center py-8 text-black-500">
                       Loading...
                     </td>
                   </tr>
                 ) : currentAccounts.length === 0 ? (
                   <tr>
-                    <td colSpan={6} className="text-center py-8 text-gray-500">
+                    <td colSpan={6} className="text-center py-8 text-black-500">
                       No accounts found
                     </td>
                   </tr>
@@ -470,15 +470,15 @@ export default function AccountsPage() {
                   currentAccounts.map((account) => (
                     <tr
                       key={account.id}
-                      className="border-b border-gray-200 hover:bg-gray-50 transition"
+                      className="border-b border-black-200 hover:bg-black-50 transition"
                     >
-                      <td className="px-6 py-4 text-sm text-gray-900 font-medium">
+                      <td className="px-6 py-4 text-sm text-black-900 font-medium">
                         {account.appid || account.medical_report_id || 'N/A'}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-6 py-4 text-sm text-black-900">
                         {account.name}
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
+                      <td className="px-6 py-4 text-sm text-black-600">
                         {account.program}
                       </td>
                       <td className="px-6 py-4">
@@ -486,7 +486,7 @@ export default function AccountsPage() {
                           className={`px-3 py-1 rounded-full text-xs font-semibold ${
                             account.report_status === 'completed' || account.medical_report_id
                               ? 'bg-green-100 text-green-700'
-                              : 'bg-gray-100 text-gray-700'
+                              : 'bg-black-100 text-black-700'
                           }`}
                         >
                           {account.medical_report_id ? 'Assigned' : 'Not Assigned'}
@@ -501,11 +501,11 @@ export default function AccountsPage() {
                             {showPassword[account.id] ? 'HIDE' : 'SHOW'}
                           </button>
                         ) : (
-                          <span className="text-gray-400">No password</span>
+                          <span className="text-black-400">No password</span>
                         )}
                         {showPassword[account.id] && account.password && (
-                          <div className="mt-2 text-xs font-mono bg-gray-50 p-2 rounded border border-gray-300">
-                            <span className="text-gray-900 select-all">
+                          <div className="mt-2 text-xs font-mono bg-black-50 p-2 rounded border border-black-300">
+                            <span className="text-black-900 select-all">
                               {account.password}
                             </span>
                           </div>
@@ -522,7 +522,7 @@ export default function AccountsPage() {
                             </button>
                           ) : (
                             <>
-                              <button className="px-4 py-2 bg-gray-100 text-gray-500 rounded-lg text-sm font-semibold cursor-not-allowed">
+                              <button className="px-4 py-2 bg-black-100 text-black-500 rounded-lg text-sm font-semibold cursor-not-allowed">
                                 Already Assigned
                               </button>
                               <button
@@ -552,10 +552,10 @@ export default function AccountsPage() {
 
           {/* Pagination */}
           {!loading && filteredAccounts.length > 0 && (
-            <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50 gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-between px-6 py-4 border-t border-black-200 bg-black-50 gap-4">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Rows per page:</span>
-                <span className="text-sm font-semibold text-gray-900">
+                <span className="text-sm text-black-700">Rows per page:</span>
+                <span className="text-sm font-semibold text-black-900">
                   {rowsPerPage}
                 </span>
               </div>
@@ -567,7 +567,7 @@ export default function AccountsPage() {
                     className={`w-8 h-8 rounded-lg transition ${
                       currentPage === i + 1
                         ? 'bg-yellow-500 text-white shadow-md'
-                        : 'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'
+                        : 'bg-white border border-black-300 text-black-700 hover:bg-black-50'
                     }`}
                   >
                     {i + 1}
@@ -575,8 +575,8 @@ export default function AccountsPage() {
                 ))}
                 {totalPages > 5 && (
                   <>
-                    <span className="text-gray-500">...</span>
-                    <span className="text-sm text-gray-700">{totalPages}</span>
+                    <span className="text-black-500">...</span>
+                    <span className="text-sm text-black-700">{totalPages}</span>
                   </>
                 )}
               </div>
@@ -593,13 +593,13 @@ export default function AccountsPage() {
         >
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Academic Year
               </label>
               <select
                 value={academicYear}
                 onChange={(e) => setAcademicYear(e.target.value)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 bg-white"
+                className="w-full px-4 py-2 border border-black-300 rounded-lg focus:outline-none focus:border-yellow-500 bg-white"
                 disabled={uploading}
               >
                 <option value="">Select Academic Year</option>
@@ -612,26 +612,26 @@ export default function AccountsPage() {
                   );
                 })}
               </select>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black-500 mt-1">
                 Select the academic year students applied
               </p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Upload File (CSV or Excel)
               </label>
               <input
                 type="file"
                 accept=".csv,.xlsx,.xls"
                 onChange={(e) => setUploadFile(e.target.files?.[0] || null)}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
+                className="w-full px-4 py-2 border border-black-300 rounded-lg focus:outline-none focus:border-yellow-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-yellow-50 file:text-yellow-700 hover:file:bg-yellow-100"
                 disabled={uploading}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black-500 mt-1">
                 Required columns: APPID, Name, Course, Campus
               </p>
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black-500 mt-1">
                 Don't have a file?{' '}
                 <button
                   onClick={handleDownloadTemplate}
@@ -651,14 +651,14 @@ export default function AccountsPage() {
             <div className="flex justify-end gap-3 pt-4">
               <button
                 onClick={() => setShowUploadModal(false)}
-                className="px-6 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                className="px-6 py-2 border border-black-300 rounded-lg hover:bg-black-50 transition"
                 disabled={uploading}
               >
                 CANCEL
               </button>
               <button
                 onClick={handleFileUpload}
-                className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition disabled:bg-black-300 disabled:cursor-not-allowed"
                 disabled={uploading || !uploadFile}
               >
                 {uploading ? 'UPLOADING...' : 'UPLOAD'}
@@ -675,29 +675,29 @@ export default function AccountsPage() {
           size="sm"
         >
           <div className="space-y-4">
-            <p className="text-sm text-gray-600">
-              Reset password for <span className="font-semibold text-gray-900">{resetStudent?.name}</span>
+            <p className="text-sm text-black-600">
+              Reset password for <span className="font-semibold text-black-900">{resetStudent?.name}</span>
               <br />
-              <span className="text-gray-500">APPID: {resetStudent?.appid}</span>
+              <span className="text-black-500">APPID: {resetStudent?.appid}</span>
             </p>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+              <label className="block text-sm font-medium text-black-700 mb-1">New Password</label>
               <input
                 type="text"
                 value={studentNewPassword}
                 onChange={(e) => setStudentNewPassword(e.target.value)}
                 placeholder="Enter new password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-yellow-500 text-gray-800"
+                className="w-full px-4 py-2 border border-black-300 rounded-lg focus:outline-none focus:border-yellow-500 text-black-800"
                 disabled={resettingStudent}
                 autoFocus
               />
-              <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
+              <p className="text-xs text-black-500 mt-1">Minimum 6 characters</p>
             </div>
             <div className="flex justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setResetStudent(null)}
-                className="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                className="px-5 py-2 border border-black-300 rounded-lg hover:bg-black-50 transition"
                 disabled={resettingStudent}
               >
                 Cancel
@@ -706,7 +706,7 @@ export default function AccountsPage() {
                 type="button"
                 onClick={handleResetStudentPassword}
                 disabled={resettingStudent || studentNewPassword.length < 6}
-                className="px-5 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="px-5 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition font-semibold disabled:bg-black-300 disabled:cursor-not-allowed"
               >
                 {resettingStudent ? 'Resetting...' : 'Reset Password'}
               </button>
@@ -717,18 +717,18 @@ export default function AccountsPage() {
         {/* Revoke Confirmation Modal */}
         {revokeTarget && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-            <div className="bg-white border border-gray-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
+            <div className="bg-white border border-black-300 rounded-2xl shadow-2xl p-8 max-w-sm w-full mx-4">
               <div className="text-center mb-4">
                 <div className="w-14 h-14 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-3">
                   <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
                   </svg>
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">Revoke Medical Report ID</h3>
-                <p className="text-sm text-gray-600 mt-2">
-                  Are you sure you want to revoke the ID for <span className="font-semibold text-gray-900">{revokeTarget.name}</span>?
+                <h3 className="text-lg font-bold text-black-900">Revoke Medical Report ID</h3>
+                <p className="text-sm text-black-600 mt-2">
+                  Are you sure you want to revoke the ID for <span className="font-semibold text-black-900">{revokeTarget.name}</span>?
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-black-500 mt-1">
                   Report ID: <span className="font-mono font-semibold">{revokeTarget.medical_report_id}</span>
                 </p>
                 <p className="text-xs text-red-500 mt-2">This will remove the assigned ID and password.</p>
@@ -737,14 +737,14 @@ export default function AccountsPage() {
                 <button
                   onClick={() => setRevokeTarget(null)}
                   disabled={revoking}
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-xl font-semibold hover:bg-gray-50 transition"
+                  className="flex-1 px-4 py-3 border border-black-300 rounded-xl font-semibold hover:bg-black-50 transition"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={handleRevoke}
                   disabled={revoking}
-                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-gray-300"
+                  className="flex-1 px-4 py-3 bg-red-500 text-white rounded-xl font-semibold hover:bg-red-600 transition disabled:bg-black-300"
                 >
                   {revoking ? 'Revoking...' : 'Revoke'}
                 </button>
@@ -763,24 +763,24 @@ export default function AccountsPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">ID Assigned Successfully</h3>
-                <p className="text-sm text-gray-600 mt-1">
+                <h3 className="text-xl font-bold text-black-900">ID Assigned Successfully</h3>
+                <p className="text-sm text-black-600 mt-1">
                   Medical Report ID has been assigned to <span className="font-semibold">{assignResult.studentName}</span>
                 </p>
               </div>
 
               <div className="space-y-3 bg-white rounded-xl p-4 border border-green-200">
                 <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase">Report ID</p>
-                  <p className="text-lg font-bold text-gray-900 select-all">{assignResult.reportId}</p>
+                  <p className="text-xs font-medium text-black-500 uppercase">Report ID</p>
+                  <p className="text-lg font-bold text-black-900 select-all">{assignResult.reportId}</p>
                 </div>
                 <div className="border-t border-green-100 pt-3">
-                  <p className="text-xs font-medium text-gray-500 uppercase">Password</p>
-                  <p className="text-lg font-bold text-gray-900 font-mono select-all">{assignResult.password}</p>
+                  <p className="text-xs font-medium text-black-500 uppercase">Password</p>
+                  <p className="text-lg font-bold text-black-900 font-mono select-all">{assignResult.password}</p>
                 </div>
               </div>
 
-              <p className="text-xs text-gray-500 text-center mt-3">Please save this information securely.</p>
+              <p className="text-xs text-black-500 text-center mt-3">Please save this information securely.</p>
 
               <button
                 onClick={() => setAssignResult({ show: false, reportId: '', password: '', studentName: '' })}

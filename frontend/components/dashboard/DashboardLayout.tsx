@@ -75,8 +75,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-gray-800 text-xl font-medium">Loading...</div>
+      <div className="min-h-screen bg-black-50 flex items-center justify-center">
+        <div className="text-black-800 text-xl font-medium">Loading...</div>
       </div>
     );
   }
@@ -97,7 +97,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
       {/* Main Content Area */}
       <div className={`flex-1 w-full ${showSidebar ? 'lg:ml-64' : ''}`}>
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
+        <header className="bg-white border-b border-black-200 sticky top-0 z-30 shadow-sm">
           <div className="px-4 sm:px-6 py-4">
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4 flex-1">
@@ -105,7 +105,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 {showSidebar && (
                   <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="lg:hidden text-gray-700 hover:text-gray-900 transition-colors p-2 rounded-lg hover:bg-gray-100"
+                    className="lg:hidden text-black-700 hover:text-black-900 transition-colors p-2 rounded-lg hover:bg-black-100"
                     aria-label="Toggle menu"
                   >
                     <svg
@@ -134,7 +134,7 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
                 )}
                 {title && (
                   <div>
-                    <h1 className="text-lg sm:text-xl font-semibold text-gray-800 truncate">{title}</h1>
+                    <h1 className="text-lg sm:text-xl font-semibold text-black-800 truncate">{title}</h1>
                   </div>
                 )}
               </div>

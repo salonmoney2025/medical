@@ -138,10 +138,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
         <button
           type="button"
           onClick={() => setIsOpen(!isOpen)}
-          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-gray-100 transition"
+          className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-black-100 transition"
         >
           {/* Profile avatar */}
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-gray-200 shadow-sm flex items-center justify-center">
+          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-black-200 shadow-sm flex items-center justify-center">
             {profileImage ? (
               <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
             ) : (
@@ -153,11 +153,11 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
             )}
           </div>
           <div className="text-left hidden md:block">
-            <p className="text-sm font-semibold text-gray-800 leading-tight">{user.full_name}</p>
-            <p className="text-[11px] text-gray-500 leading-tight">{roleLabel}</p>
+            <p className="text-sm font-semibold text-black-800 leading-tight">{user.full_name}</p>
+            <p className="text-[11px] text-black-500 leading-tight">{roleLabel}</p>
           </div>
           <svg
-            className="w-4 h-4 text-gray-400 hidden sm:block"
+            className="w-4 h-4 text-black-400 hidden sm:block"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -173,11 +173,11 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
 
         {/* Dropdown Menu */}
         {isOpen && (
-          <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-200 py-2 z-50">
+          <div className="absolute right-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-black-200 py-2 z-50">
             {/* Signed in as */}
-            <div className="px-4 py-3 border-b border-gray-100">
+            <div className="px-4 py-3 border-b border-black-100">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-gray-200 shrink-0">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-black-200 shrink-0">
                   {profileImage ? (
                     <img src={profileImage} alt="Profile" className="w-full h-full object-cover" />
                   ) : (
@@ -189,8 +189,8 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
                   )}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate">{user.full_name}</p>
-                  <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                  <p className="text-sm font-semibold text-black-900 truncate">{user.full_name}</p>
+                  <p className="text-xs text-black-500 truncate">{user.email}</p>
                 </div>
               </div>
             </div>
@@ -203,16 +203,16 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
                   setIsOpen(false);
                   setShowChangePasswordModal(true);
                 }}
-                className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50 transition flex items-center gap-3"
+                className="w-full px-4 py-2.5 text-left text-sm text-black-700 hover:bg-black-50 transition flex items-center gap-3"
               >
-                <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+                <svg className="w-4 h-4 text-black-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                 </svg>
                 Change Password
               </button>
             </div>
 
-            <div className="border-t border-gray-100 my-1" />
+            <div className="border-t border-black-100 my-1" />
 
             <button
               type="button"
@@ -246,7 +246,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
       >
         <form onSubmit={handleChangePassword} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black-700 mb-2">
               Old password
             </label>
             <input
@@ -255,14 +255,14 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, old_password: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               placeholder="Enter your current password"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black-700 mb-2">
               New password
             </label>
             <input
@@ -271,14 +271,14 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, new_password: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               placeholder="Enter new password (min 8 characters)"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-black-700 mb-2">
               Confirm new password
             </label>
             <input
@@ -287,7 +287,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
               onChange={(e) =>
                 setPasswordForm({ ...passwordForm, confirm_password: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               placeholder="Confirm your new password"
               required
             />
@@ -318,14 +318,14 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({ user }) => {
                   confirm_password: '',
                 });
               }}
-              className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+              className="px-6 py-2 border border-black-300 rounded hover:bg-black-100 transition"
             >
               CANCEL
             </button>
             <button
               type="submit"
               disabled={passwordLoading}
-              className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition disabled:bg-gray-400"
+              className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition disabled:bg-black-400"
             >
               {passwordLoading ? 'CHANGING...' : 'CHANGE'}
             </button>

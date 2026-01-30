@@ -19,8 +19,8 @@ export const Input: React.FC<InputProps> = ({
         </label>
       )}
       <input
-        className={`w-full px-4 py-2 bg-secondary-mediumGray text-black placeholder-gray-400 border ${
-          error ? 'border-red-500' : 'border-secondary-lightGray'
+        className={`w-full px-4 py-2 bg-secondary-mediumblack text-black placeholder-black-400 border ${
+          error ? 'border-red-500' : 'border-secondary-lightblack'
         } rounded focus:outline-none focus:border-primary-gold transition ${className}`}
         {...props}
       />

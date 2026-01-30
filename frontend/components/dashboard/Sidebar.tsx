@@ -229,7 +229,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
             <button
               type="button"
               onClick={onClose}
-              className="lg:hidden text-gray-400 hover:text-white transition p-1"
+              className="lg:hidden text-black-400 hover:text-white transition p-1"
               aria-label="Close sidebar"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -295,7 +295,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
 
         {/* Navigation Menu */}
         <nav className="flex-1 overflow-y-auto py-3 px-3">
-          <p className="text-[10px] font-semibold uppercase tracking-widest text-gray-500 px-3 mb-2">Navigation</p>
+          <p className="text-[10px] font-semibold uppercase tracking-widest text-black-500 px-3 mb-2">Navigation</p>
           {menuItems.map((item) => {
             const active = isActive(item.path);
             return (
@@ -306,7 +306,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg mb-0.5 text-left transition-all duration-200 ${
                   active
                     ? 'shadow-md'
-                    : 'text-gray-300 hover:bg-white/5'
+                    : 'text-black-300 hover:bg-white/5'
                 }`}
                 style={
                   active
@@ -318,7 +318,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
                     : { borderLeft: '3px solid transparent' }
                 }
               >
-                <span className={active ? '' : 'text-gray-400'}>{item.icon}</span>
+                <span className={active ? '' : 'text-black-400'}>{item.icon}</span>
                 <span className="font-semibold text-[13px]">{item.name}</span>
               </button>
             );
@@ -327,7 +327,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ role, isOpen, onClose, sidebar
 
         {/* Footer */}
         <div className="px-5 py-4 border-t" style={{ borderColor: `${primaryColor}22` }}>
-          <div className="flex items-center gap-2 text-gray-500">
+          <div className="flex items-center gap-2 text-black-500">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>

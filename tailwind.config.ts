@@ -17,9 +17,9 @@ const config: Config = {
         },
         secondary: {
           black: "#000000",
-          darkGray: "#1A1A1A",
-          mediumGray: "#2D2D2D",
-          lightGray: "#4A4A4A",
+          darkblack: "#1A1A1A",
+          mediumblack: "#2D2D2D",
+          lightblack: "#4A4A4A",
         },
         accent: {
           gold: "#DAA520",

@@ -13,6 +13,10 @@ interface ToastMessage {
 
 interface ToastContextType {
   toast: (message: string, type?: ToastType, duration?: number) => void;
+  success: (message: string, duration?: number) => void;
+  error: (message: string, duration?: number) => void;
+  info: (message: string, duration?: number) => void;
+  warning: (message: string, duration?: number) => void;
 }
 
 const ToastContext = createContext<ToastContextType | null>(null);
@@ -46,12 +50,17 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
     setToasts(prev => [...prev, { id, message, type, duration: duration ?? defaultDuration }]);
   }, [defaultDuration]);
 
+  const success = useCallback((message: string, duration?: number) => toast(message, 'success', duration), [toast]);
+  const error = useCallback((message: string, duration?: number) => toast(message, 'error', duration), [toast]);
+  const info = useCallback((message: string, duration?: number) => toast(message, 'info', duration), [toast]);
+  const warning = useCallback((message: string, duration?: number) => toast(message, 'warning', duration), [toast]);
+
   const removeToast = useCallback((id: number) => {
     setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
   return (
-    <ToastContext.Provider value={{ toast }}>
+    <ToastContext.Provider value={{ toast, success, error, info, warning }}>
       {children}
       {/* Center-top container */}
       <div

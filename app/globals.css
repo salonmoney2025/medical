@@ -8,9 +8,9 @@
   --light-gold: #ffffff;
   --dark-gold: #B8860B;
   --secondary-black: #1A1A1A;
-  --dark-gray: #F5F5F5;
-  --medium-gray: #E5E5E5;
-  --light-gray: #D1D1D1;
+  --dark-black: #F5F5F5;
+  --medium-black: #E5E5E5;
+  --light-black: #D1D1D1;
   --accent-gold: #DAA520;
   --pale-gold: #FFF8DC;
   --text-primary: #1A1A1A;
@@ -145,11 +145,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--dark-gray);
+  background: var(--dark-black);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--light-gray);
+  background: var(--light-black);
   border-radius: 4px;
 }
 

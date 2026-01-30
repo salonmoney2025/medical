@@ -154,7 +154,7 @@ export default function SettingsPage() {
     return (
       <DashboardLayout title="Settings" role="super_admin">
         <div className="flex items-center justify-center py-20">
-          <p className="text-gray-500 text-lg">Loading settings...</p>
+          <p className="text-black-500 text-lg">Loading settings...</p>
         </div>
       </DashboardLayout>
     );
@@ -164,14 +164,14 @@ export default function SettingsPage() {
     <DashboardLayout title="Settings" role="super_admin">
       <div className="max-w-4xl mx-auto space-y-8">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">System Settings</h1>
-          <p className="text-gray-500 mt-1">Customize the look and feel of the entire application.</p>
+          <h1 className="text-2xl font-bold text-black-900">System Settings</h1>
+          <p className="text-black-500 mt-1">Customize the look and feel of the entire application.</p>
         </div>
 
         {/* Preset Themes */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Quick Presets</h2>
-          <p className="text-sm text-gray-500 mb-4">Select a preset theme to apply instantly.</p>
+        <div className="bg-white rounded-xl border border-black-200 shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-black-900 mb-4">Quick Presets</h2>
+          <p className="text-sm text-black-500 mb-4">Select a preset theme to apply instantly.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {PRESET_THEMES.map((preset) => (
               <button
@@ -180,25 +180,25 @@ export default function SettingsPage() {
                 className={`relative rounded-xl border-2 p-4 transition-all hover:scale-[1.02] ${
                   theme.primary_color === preset.primary_color &&
                   theme.sidebar_color === preset.sidebar_color
-                    ? 'border-gray-900 shadow-lg'
-                    : 'border-gray-200 hover:border-gray-300'
+                    ? 'border-black-900 shadow-lg'
+                    : 'border-black-200 hover:border-black-300'
                 }`}
               >
                 <div className="flex items-center gap-2 mb-3">
                   <div
-                    className="w-6 h-6 rounded-full border border-gray-200"
+                    className="w-6 h-6 rounded-full border border-black-200"
                     style={{ backgroundColor: preset.primary_color }}
                   />
                   <div
-                    className="w-6 h-6 rounded-full border border-gray-200"
+                    className="w-6 h-6 rounded-full border border-black-200"
                     style={{ backgroundColor: preset.sidebar_color }}
                   />
                   <div
-                    className="w-6 h-6 rounded-full border border-gray-200"
+                    className="w-6 h-6 rounded-full border border-black-200"
                     style={{ backgroundColor: preset.accent_color }}
                   />
                 </div>
-                <p className="text-sm font-medium text-gray-900">{preset.name}</p>
+                <p className="text-sm font-medium text-black-900">{preset.name}</p>
                 {/* Preview bar */}
                 <div className="mt-2 h-2 rounded-full" style={{ backgroundColor: preset.primary_color }} />
               </button>
@@ -207,94 +207,94 @@ export default function SettingsPage() {
         </div>
 
         {/* Custom Colors */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Custom Colors</h2>
-          <p className="text-sm text-gray-500 mb-6">Fine-tune individual colors for your brand.</p>
+        <div className="bg-white rounded-xl border border-black-200 shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-black-900 mb-4">Custom Colors</h2>
+          <p className="text-sm text-black-500 mb-6">Fine-tune individual colors for your brand.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Primary Color */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Primary Color
               </label>
-              <p className="text-xs text-gray-400 mb-2">Buttons, links, active states</p>
+              <p className="text-xs text-black-400 mb-2">Buttons, links, active states</p>
               <div className="flex items-center gap-3">
                 <input
                   type="color"
                   value={theme.primary_color}
                   onChange={(e) => handleColorChange('primary_color', e.target.value)}
-                  className="w-12 h-12 rounded-lg cursor-pointer border border-gray-200"
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
                 />
                 <input
                   type="text"
                   value={theme.primary_color}
                   onChange={(e) => handleColorChange('primary_color', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-mono"
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
                 />
               </div>
             </div>
 
             {/* Sidebar Color */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Sidebar Color
               </label>
-              <p className="text-xs text-gray-400 mb-2">Navigation sidebar background</p>
+              <p className="text-xs text-black-400 mb-2">Navigation sidebar background</p>
               <div className="flex items-center gap-3">
                 <input
                   type="color"
                   value={theme.sidebar_color}
                   onChange={(e) => handleColorChange('sidebar_color', e.target.value)}
-                  className="w-12 h-12 rounded-lg cursor-pointer border border-gray-200"
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
                 />
                 <input
                   type="text"
                   value={theme.sidebar_color}
                   onChange={(e) => handleColorChange('sidebar_color', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-mono"
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
                 />
               </div>
             </div>
 
             {/* Background Color */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Background Color
               </label>
-              <p className="text-xs text-gray-400 mb-2">Page background behind cards</p>
+              <p className="text-xs text-black-400 mb-2">Page background behind cards</p>
               <div className="flex items-center gap-3">
                 <input
                   type="color"
                   value={theme.background_color}
                   onChange={(e) => handleColorChange('background_color', e.target.value)}
-                  className="w-12 h-12 rounded-lg cursor-pointer border border-gray-200"
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
                 />
                 <input
                   type="text"
                   value={theme.background_color}
                   onChange={(e) => handleColorChange('background_color', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-mono"
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
                 />
               </div>
             </div>
 
             {/* Accent Color */}
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Accent Color
               </label>
-              <p className="text-xs text-gray-400 mb-2">Highlights and secondary actions</p>
+              <p className="text-xs text-black-400 mb-2">Highlights and secondary actions</p>
               <div className="flex items-center gap-3">
                 <input
                   type="color"
                   value={theme.accent_color}
                   onChange={(e) => handleColorChange('accent_color', e.target.value)}
-                  className="w-12 h-12 rounded-lg cursor-pointer border border-gray-200"
+                  className="w-12 h-12 rounded-lg cursor-pointer border border-black-200"
                 />
                 <input
                   type="text"
                   value={theme.accent_color}
                   onChange={(e) => handleColorChange('accent_color', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm text-gray-900 font-mono"
+                  className="flex-1 px-3 py-2 border border-black-300 rounded-lg text-sm text-black-900 font-mono"
                 />
               </div>
             </div>
@@ -302,8 +302,8 @@ export default function SettingsPage() {
         </div>
 
         {/* Live Preview */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Live Preview</h2>
+        <div className="bg-white rounded-xl border border-black-200 shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-black-900 mb-4">Live Preview</h2>
           <div
             className="rounded-xl p-6 border"
             style={{ backgroundColor: theme.background_color, borderColor: '#e5e7eb' }}
@@ -315,15 +315,15 @@ export default function SettingsPage() {
                 style={{ backgroundColor: theme.sidebar_color }}
               >
                 <div className="w-full h-3 rounded" style={{ backgroundColor: theme.primary_color }} />
-                <div className="w-full h-3 rounded bg-gray-600" />
-                <div className="w-full h-3 rounded bg-gray-600" />
+                <div className="w-full h-3 rounded bg-black-600" />
+                <div className="w-full h-3 rounded bg-black-600" />
               </div>
               {/* Mini content preview */}
               <div className="flex-1 space-y-3">
-                <div className="bg-white rounded-lg p-3 border border-gray-200">
+                <div className="bg-white rounded-lg p-3 border border-black-200">
                   <div className="h-3 w-32 rounded mb-2" style={{ backgroundColor: theme.primary_color }} />
-                  <div className="h-2 w-full rounded bg-gray-200" />
-                  <div className="h-2 w-3/4 rounded bg-gray-200 mt-1" />
+                  <div className="h-2 w-full rounded bg-black-200" />
+                  <div className="h-2 w-3/4 rounded bg-black-200 mt-1" />
                 </div>
                 <div className="flex gap-3">
                   <div
@@ -345,15 +345,15 @@ export default function SettingsPage() {
         </div>
 
         {/* Alert Duration */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Alert Duration</h2>
-          <p className="text-sm text-gray-500 mb-4">Configure how long toast notifications remain visible before fading out.</p>
+        <div className="bg-white rounded-xl border border-black-200 shadow-sm p-6">
+          <h2 className="text-lg font-semibold text-black-900 mb-4">Alert Duration</h2>
+          <p className="text-sm text-black-500 mb-4">Configure how long toast notifications remain visible before fading out.</p>
           <div className="flex items-center gap-4">
             <select
               value={theme.alert_duration}
               onChange={(e) => setTheme({ ...theme, alert_duration: e.target.value })}
               title="Alert duration"
-              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 text-gray-900"
+              className="px-4 py-2 border border-black-300 rounded-lg focus:outline-none focus:border-green-500 text-black-900"
             >
               <option value="5000">5 seconds</option>
               <option value="10000">10 seconds (Default)</option>
@@ -361,7 +361,7 @@ export default function SettingsPage() {
               <option value="20000">20 seconds</option>
               <option value="30000">30 seconds</option>
             </select>
-            <span className="text-sm text-gray-500">Currently: {parseInt(theme.alert_duration) / 1000}s</span>
+            <span className="text-sm text-black-500">Currently: {parseInt(theme.alert_duration) / 1000}s</span>
           </div>
         </div>
 
@@ -381,7 +381,7 @@ export default function SettingsPage() {
         <div className="flex justify-end gap-4 pb-8">
           <button
             onClick={fetchTheme}
-            className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl font-semibold hover:bg-gray-200 transition"
+            className="px-6 py-3 bg-black-100 text-black-700 rounded-xl font-semibold hover:bg-black-200 transition"
           >
             Reset
           </button>

@@ -356,7 +356,7 @@ mysql -u root -p student_medical_system < lib/db/schema_update.sql
 
 ## 🎨 DESIGN FEATURES
 
-- ✅ Consistent color scheme (Blue, Gold, Gray)
+- ✅ Consistent color scheme (Blue, Gold, black)
 - ✅ Professional UI with cards and modals
 - ✅ Loading states on all async operations
 - ✅ Error and success messages

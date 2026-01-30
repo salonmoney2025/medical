@@ -238,7 +238,7 @@ export default function AdminsPage() {
       <div className="space-y-6">
         {/* Header */}
         <div className="flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900">System Admins</h1>
+          <h1 className="text-2xl font-bold text-black-900">System Admins</h1>
           <div className="flex gap-3">
             <button
               onClick={fetchAdmins}
@@ -261,7 +261,7 @@ export default function AdminsPage() {
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1 flex gap-2">
             <div className="flex-1 relative">
-              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black-400">
                 🔍
               </span>
               <input
@@ -270,7 +270,7 @@ export default function AdminsPage() {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onKeyDown={handleSearchKeyDown}
                 placeholder={`Search ${filterType.toLowerCase()}...`}
-                className="w-full pl-10 pr-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800 placeholder-gray-500"
+                className="w-full pl-10 pr-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-black-800 placeholder-black-500"
               />
             </div>
             <button
@@ -285,7 +285,7 @@ export default function AdminsPage() {
               <button
                 type="button"
                 onClick={handleClearSearch}
-                className="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition font-medium whitespace-nowrap"
+                className="px-4 py-2 bg-black-200 text-black-700 rounded-lg hover:bg-black-300 transition font-medium whitespace-nowrap"
               >
                 Clear
               </button>
@@ -295,42 +295,42 @@ export default function AdminsPage() {
             value={filterType}
             onChange={(e) => setFilterType(e.target.value)}
             title="Filter type"
-            className="px-4 py-2 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
+            className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
             <option value="Email">Email</option>
             <option value="Full name">Full name</option>
             <option value="Designation">Designation</option>
             <option value="Location">Location</option>
           </select>
-          <button type="button" className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition shadow-sm">
+          <button type="button" className="px-4 py-2 bg-white border border-black-300 rounded-lg hover:bg-black-50 transition shadow-sm">
             🖨️
           </button>
         </div>
 
         {/* Table */}
-        <div className="bg-white rounded-lg border border-gray-300 overflow-hidden">
+        <div className="bg-white rounded-lg border border-black-300 overflow-hidden">
           <table className="w-full">
-            <thead className="bg-gray-100 border-b border-gray-300">
+            <thead className="bg-black-100 border-b border-black-300">
               <tr>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Full name
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Email
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Designation
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Location
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Role
                 </th>
-                <th className="text-left px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-left px-6 py-3 text-sm font-semibold text-black-700">
                   Status
                 </th>
-                <th className="text-right px-6 py-3 text-sm font-semibold text-gray-700">
+                <th className="text-right px-6 py-3 text-sm font-semibold text-black-700">
                   Actions
                 </th>
               </tr>
@@ -338,13 +338,13 @@ export default function AdminsPage() {
             <tbody>
               {loading ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-8 text-gray-500">
+                  <td colSpan={7} className="text-center py-8 text-black-500">
                     Loading...
                   </td>
                 </tr>
               ) : currentAdmins.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="text-center py-8 text-gray-500">
+                  <td colSpan={7} className="text-center py-8 text-black-500">
                     No admins found
                   </td>
                 </tr>
@@ -352,7 +352,7 @@ export default function AdminsPage() {
                 currentAdmins.map((admin) => (
                   <tr
                     key={admin.id}
-                    className="border-b border-gray-200 hover:bg-gray-50"
+                    className="border-b border-black-200 hover:bg-black-50"
                   >
                     <td className="px-6 py-4 text-sm text-blue-600">
                       {admin.full_name}
@@ -376,7 +376,7 @@ export default function AdminsPage() {
                             ? 'bg-orange-100 text-orange-700'
                             : admin.status === 'invited'
                             ? 'bg-blue-100 text-blue-700'
-                            : 'bg-gray-100 text-gray-700'
+                            : 'bg-black-100 text-black-700'
                         }`}
                       >
                         {admin.status}
@@ -398,13 +398,13 @@ export default function AdminsPage() {
 
           {/* Pagination */}
           {!loading && filteredAdmins.length > 0 && (
-            <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200 bg-gray-50">
+            <div className="flex items-center justify-between px-6 py-4 border-t border-black-200 bg-black-50">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-gray-700">Rows per page</span>
+                <span className="text-sm text-black-700">Rows per page</span>
                 <select
                   value={rowsPerPage}
                   onChange={(e) => setRowsPerPage(Number(e.target.value))}
-                  className="text-sm border border-gray-300 rounded px-2 py-1"
+                  className="text-sm border border-black-300 rounded px-2 py-1"
                 >
                   <option value={20}>20</option>
                   <option value={50}>50</option>
@@ -419,7 +419,7 @@ export default function AdminsPage() {
                     className={`w-8 h-8 rounded ${
                       currentPage === i + 1
                         ? 'bg-orange-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        : 'bg-black-200 text-black-700 hover:bg-black-300'
                     }`}
                   >
                     {i + 1}
@@ -445,7 +445,7 @@ export default function AdminsPage() {
               onChange={(e) =>
                 setInviteForm({ ...inviteForm, email: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
             <input
@@ -455,7 +455,7 @@ export default function AdminsPage() {
               onChange={(e) =>
                 setInviteForm({ ...inviteForm, full_name: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             />
             <div>
@@ -466,18 +466,18 @@ export default function AdminsPage() {
                 onChange={(e) =>
                   setInviteForm({ ...inviteForm, password: e.target.value })
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
                 required
                 minLength={6}
               />
-              <p className="text-xs text-gray-500 mt-1">Set the login password for this admin</p>
+              <p className="text-xs text-black-500 mt-1">Set the login password for this admin</p>
             </div>
             <select
               value={inviteForm.designation}
               onChange={(e) =>
                 setInviteForm({ ...inviteForm, designation: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Designation</option>
@@ -492,7 +492,7 @@ export default function AdminsPage() {
               onChange={(e) =>
                 setInviteForm({ ...inviteForm, campus: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Campus</option>
@@ -507,7 +507,7 @@ export default function AdminsPage() {
               onChange={(e) =>
                 setInviteForm({ ...inviteForm, role: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-black-300 rounded focus:outline-none focus:border-blue-500"
               required
             >
               <option value="">Role</option>
@@ -521,7 +521,7 @@ export default function AdminsPage() {
               <button
                 type="button"
                 onClick={() => setShowInviteModal(false)}
-                className="px-6 py-2 border border-gray-300 rounded hover:bg-gray-100 transition"
+                className="px-6 py-2 border border-black-300 rounded hover:bg-black-100 transition"
                 disabled={inviting}
               >
                 CANCEL
@@ -529,7 +529,7 @@ export default function AdminsPage() {
               <button
                 type="submit"
                 disabled={inviting}
-                className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="px-6 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition disabled:bg-black-300 disabled:cursor-not-allowed"
               >
                 {inviting ? 'Creating...' : 'CREATE ADMIN'}
               </button>
@@ -545,29 +545,29 @@ export default function AdminsPage() {
           size="sm"
         >
           <div className="space-y-4">
-            <p className="text-sm text-gray-600">
-              Reset password for <span className="font-semibold text-gray-900">{resetTarget?.full_name}</span>
+            <p className="text-sm text-black-600">
+              Reset password for <span className="font-semibold text-black-900">{resetTarget?.full_name}</span>
               <br />
-              <span className="text-gray-500">{resetTarget?.email}</span>
+              <span className="text-black-500">{resetTarget?.email}</span>
             </p>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+              <label className="block text-sm font-medium text-black-700 mb-1">New Password</label>
               <input
                 type="text"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 placeholder="Enter new password"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-800"
+                className="w-full px-4 py-2 border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-black-800"
                 disabled={resetting}
                 autoFocus
               />
-              <p className="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
+              <p className="text-xs text-black-500 mt-1">Minimum 6 characters</p>
             </div>
             <div className="flex justify-end gap-3 pt-2">
               <button
                 type="button"
                 onClick={() => setResetTarget(null)}
-                className="px-5 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition"
+                className="px-5 py-2 border border-black-300 rounded-lg hover:bg-black-50 transition"
                 disabled={resetting}
               >
                 Cancel
@@ -576,7 +576,7 @@ export default function AdminsPage() {
                 type="button"
                 onClick={handleResetPassword}
                 disabled={resetting || newPassword.length < 6}
-                className="px-5 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition font-semibold disabled:bg-gray-300 disabled:cursor-not-allowed"
+                className="px-5 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition font-semibold disabled:bg-black-300 disabled:cursor-not-allowed"
               >
                 {resetting ? 'Resetting...' : 'Reset Password'}
               </button>
@@ -600,20 +600,20 @@ export default function AdminsPage() {
                     </svg>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">
+                <h3 className="text-lg font-bold text-black-900">
                   {inviteResult.success ? 'Admin Created Successfully' : 'Failed to Create Admin'}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">{inviteResult.message}</p>
+                <p className="text-sm text-black-600 mt-1">{inviteResult.message}</p>
               </div>
               {inviteResult.success && (
-                <div className="bg-white border border-gray-200 rounded-xl p-4 mb-4 space-y-2">
+                <div className="bg-white border border-black-200 rounded-xl p-4 mb-4 space-y-2">
                   <div>
-                    <span className="text-xs text-gray-500 font-medium">Email</span>
-                    <p className="text-sm font-semibold text-gray-900">{inviteResult.email}</p>
+                    <span className="text-xs text-black-500 font-medium">Email</span>
+                    <p className="text-sm font-semibold text-black-900">{inviteResult.email}</p>
                   </div>
                   <div>
-                    <span className="text-xs text-gray-500 font-medium">Password</span>
-                    <p className="text-sm font-semibold text-gray-900">{inviteResult.password}</p>
+                    <span className="text-xs text-black-500 font-medium">Password</span>
+                    <p className="text-sm font-semibold text-black-900">{inviteResult.password}</p>
                   </div>
                   <p className="text-xs text-orange-600 mt-2">Save these credentials - the password cannot be viewed again.</p>
                 </div>
@@ -644,10 +644,10 @@ export default function AdminsPage() {
                     </svg>
                   )}
                 </div>
-                <h3 className="text-lg font-bold text-gray-900">
+                <h3 className="text-lg font-bold text-black-900">
                   {resetResult.success ? 'Password Reset Successful' : 'Password Reset Failed'}
                 </h3>
-                <p className="text-sm text-gray-600 mt-1">{resetResult.message}</p>
+                <p className="text-sm text-black-600 mt-1">{resetResult.message}</p>
               </div>
               <button
                 onClick={() => setResetResult({ show: false, success: false, message: '' })}

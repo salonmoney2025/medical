@@ -72,13 +72,13 @@ export default function StudentLoginPage() {
 
         {/* Login Card */}
         <div className="bg-white rounded-lg shadow-2xl p-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          <h2 className="text-2xl font-bold text-black-900 mb-6 text-center">
             Student Login
           </h2>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Application ID (APPID)
               </label>
               <input
@@ -87,16 +87,16 @@ export default function StudentLoginPage() {
                 onChange={(e) => setAppid(e.target.value)}
                 placeholder="Enter your APPID (3-5 digits)"
                 maxLength={5}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg"
+                className="w-full px-4 py-3 border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg"
                 disabled={loading}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black-500 mt-1">
                 Example: 25673
               </p>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label className="block text-sm font-medium text-black-700 mb-2">
                 Password
               </label>
               <input
@@ -104,10 +104,10 @@ export default function StudentLoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg"
+                className="w-full px-4 py-3 border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 text-lg"
                 disabled={loading}
               />
-              <p className="text-xs text-gray-500 mt-1">
+              <p className="text-xs text-black-500 mt-1">
                 Password provided by the medical officer
               </p>
             </div>
@@ -127,7 +127,7 @@ export default function StudentLoginPage() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center text-sm text-gray-600">
+          <div className="mt-6 text-center text-sm text-black-600">
             <p>
               Having trouble logging in?
               <br />

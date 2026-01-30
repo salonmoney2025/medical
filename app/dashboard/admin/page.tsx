@@ -9,6 +9,7 @@ interface DashboardStats {
   totalStudentsUploaded: number;
   matriculationIdAssigned: number;
   matriculationIdPending: number;
+  studentsWithRecords: number;
   campusData: Array<{
     campus: string;
     count: number;
@@ -77,7 +78,7 @@ export default function AdminDashboard() {
     return (
       <DashboardLayout role="super_admin">
         <div className="flex items-center justify-center h-96">
-          <div className="text-gray-800 text-xl">Loading dashboard...</div>
+          <div className="text-black-800 text-xl">Loading dashboard...</div>
         </div>
       </DashboardLayout>
     );
@@ -89,12 +90,12 @@ export default function AdminDashboard() {
         {/* Greeting Section */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <div>
-            <p className="text-gray-600 text-sm">{greeting},</p>
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">{userName}!</h1>
+            <p className="text-black-600 text-sm">{greeting},</p>
+            <h1 className="text-2xl sm:text-3xl font-bold text-black-900 mt-1">{userName}!</h1>
           </div>
           <button
             onClick={handleRefresh}
-            className="flex items-center gap-2 bg-white hover:bg-gray-50 text-gray-700 px-4 py-2 rounded-lg border border-gray-300 transition-colors shadow-sm"
+            className="flex items-center gap-2 bg-white hover:bg-black-50 text-black-700 px-4 py-2 rounded-lg border border-black-300 transition-colors shadow-sm"
           >
             <span className="text-lg">🔄</span>
             <span className="font-medium">Refresh</span>
@@ -119,15 +120,15 @@ export default function AdminDashboard() {
                 onActionClick={() => {}}
               />
               <StatCard
-                title="TOTAL NUMBER OF STUDENT INVESTIGATED"
-                value={stats.matriculationIdAssigned}
+                title="STUDENTS WITH MEDICAL RECORDS"
+                value={stats.studentsWithRecords}
                 variant="primary"
                 actionText="VIEW DETAILS"
                 onActionClick={() => {}}
               />
               <StatCard
                 title="PENDING STUDENT INVESTIGATION"
-                value={stats.matriculationIdPending}
+                value={stats.totalStudentsUploaded - stats.studentsWithRecords}
                 variant="warning"
                 actionText="VIEW DETAILS"
                 onActionClick={() => {}}
@@ -135,8 +136,8 @@ export default function AdminDashboard() {
             </div>
 
             {/* Data by Campus Chart */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200 shadow-sm">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">DATA BY CAMPUS.</h2>
+            <div className="bg-white rounded-lg p-6 border border-black-200 shadow-sm">
+              <h2 className="text-xl font-semibold text-black-900 mb-6">DATA BY CAMPUS.</h2>
               {stats.campusData && stats.campusData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={400}>
                   <BarChart data={stats.campusData}>
@@ -172,7 +173,7 @@ export default function AdminDashboard() {
                   </BarChart>
                 </ResponsiveContainer>
               ) : (
-                <div className="flex items-center justify-center h-64 text-gray-500">
+                <div className="flex items-center justify-center h-64 text-black-500">
                   No campus data available
                 </div>
               )}
