@@ -233,7 +233,7 @@ export default function GeneratedIDsPage() {
             onChange={(e) => setFilterType(e.target.value)}
             className="px-4 py-2 bg-white border border-black-300 rounded-lg focus:outline-none focus:border-blue-500 shadow-sm"
           >
-            <option value="Medical Report ID">Medical Report ID</option>
+            <option value="Medical Report ID">M.R.ID</option>
             <option value="APPID">APPID</option>
             <option value="Full name">Full name</option>
             <option value="Program">Program</option>
