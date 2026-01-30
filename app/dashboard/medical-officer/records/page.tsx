@@ -408,14 +408,14 @@ export default function MedicalOfficerRecordsPage() {
             <table className="w-full">
               <thead className="bg-black-50 border-b border-black-200">
                 <tr>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Student Name</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Mat.Number</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Program</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Diagnosis</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Health %</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Status</th>
-                  <th className="text-left px-4 py-3 text-sm font-semibold text-black-700">Date</th>
-                  <th className="text-right px-4 py-3 text-sm font-semibold textblacktext-blacky-700">Actions</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Student Name</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Mat.Number</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Program</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Diagnosis</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Health %</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Status</th>
+                  <th className="text-left px-2 py-3 text-sm font-semibold text-black-700">Date</th>
+                  <th className="text-right px-2 py-3 text-sm font-semibold textblacktext-blacky-700">Actions</th>
                 </tr>
               </thead>
               <tbody>
