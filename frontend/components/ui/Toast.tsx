@@ -27,7 +27,7 @@ let idCounter = 0;
 
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
-  const [defaultDuration, setDefaultDuration] = useState(20000);
+  const [defaultDuration, setDefaultDuration] = useState(10000);
 
   useEffect(() => {
     fetch('/api/theme')

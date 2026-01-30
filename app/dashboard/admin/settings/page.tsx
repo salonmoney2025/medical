@@ -62,7 +62,7 @@ export default function SettingsPage() {
     sidebar_color: '#000000',
     background_color: '#f0f0f0',
     accent_color: '#22c55e',
-    alert_duration: '20000',
+    alert_duration: '10000',
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
